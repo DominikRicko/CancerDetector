@@ -1,0 +1,31 @@
+<form [formGroup]="sampleForm">
+  <kendo-formfield>
+      <kendo-floatinglabel text="Enter Age">
+        <kendo-textbox formControlName="age"></kendo-textbox>
+      </kendo-floatinglabel>
+      <kendo-formhint>Please, enter your email.</kendo-formhint>
+      <kendo-formerror>Error: Email is required.</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-floatinglabel text="Sample ID">
+      <kendo-textbox formControlName="sampleId"></kendo-textbox>
+    </kendo-floatinglabel>
+    <kendo-formhint>Please, enter your email.</kendo-formhint>
+    <kendo-formerror>Error: Email is required.</kendo-formerror>
+  </kendo-formfield>
+
+</form>
+
+<!--
+sex : new FormControl(),
+patientCohort : new FormControl(),
+sampleOrigin : new FormControl(),
+plasmaCA19_9 : new FormControl(),
+creatine : new FormControl(),
+stage : new FormControl(),
+benign_sample_diagnosis : new FormControl()-->
+
+<button kendoButton (click)="doSomething()"></button>
+
+<a routerLink="/result">{{'TABS.RESULT.TITLE' | translate}}</a>

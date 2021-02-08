@@ -9,6 +9,7 @@ import { AppConfig } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   constructor(
     private electronService: ElectronService,
     private translate: TranslateService
@@ -24,5 +25,7 @@ export class AppComponent {
     } else {
       console.log('Run in browser');
     }
+
   }
+
 }

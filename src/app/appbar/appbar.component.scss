@@ -1,0 +1,16 @@
+
+kendo-appbar{
+  display: flex;
+  margin: auto;
+}
+
+kendo-appbar-section{
+  width: 32%;
+  justify-content: center;
+}
+
+kendo-appbar a button , kendo-appbar a{
+  width: 100%;
+  font-size: large;
+  height: fit-content;
+}

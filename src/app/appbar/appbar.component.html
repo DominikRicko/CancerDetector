@@ -1,0 +1,27 @@
+
+<kendo-appbar [position]="'top'">
+  <kendo-appbar-section>
+    <a routerLink='/new_sample'>
+      <button kendoButton [primary]="this.buttonNewSampleIsSelected">
+        {{'TABS.NEW_SAMPLE.TITLE' | translate}}
+      </button>
+    </a>
+  </kendo-appbar-section>
+
+  <kendo-appbar-section>
+    <a routerLink='/history'>
+      <button kendoButton [primary]="this.buttonHistoryIsSelected">
+        {{'TABS.HISTORY.TITLE' | translate}}
+      </button>
+    </a>
+  </kendo-appbar-section>
+
+  <kendo-appbar-section>
+    <a routerLink='/statistics'>
+      <button kendoButton [primary]="this.buttonStatisticsIsSelected">
+        {{'TABS.STATISTICS.TITLE' | translate}}
+      </button>
+    </a>
+  </kendo-appbar-section>
+</kendo-appbar>
+<br />

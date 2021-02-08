@@ -1,16 +1,16 @@
 {
   "TABS": {
     "NEW_SAMPLE": {
-      "TITLE": "New sample"
+      "TITLE": "Novi uzorak"
     },
     "HISTORY": {
-      "TITLE": "History"
+      "TITLE": "Povijest"
     },
     "STATISTICS": {
-      "TITLE": "Statistics"
+      "TITLE": "Statistika"
     },
     "RESULT": {
-      "TITLE": "Result"
+      "TITLE": "Rezultat"
     }
   }
 }

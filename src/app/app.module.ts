@@ -7,14 +7,24 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+import { NavigationModule } from '@progress/kendo-angular-navigation';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
+
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
-import { DetailModule } from './detail/detail.module';
+import { NewSampleModule } from './new_sample/new_sample.module';
+import { StatisticsModule } from './statistics/statistics.module';
+import { HistoryModule } from './history/history.module';
+import { ResultModule } from './result/result.module';
 
 import { AppComponent } from './app.component';
+import { AppbarComponent } from './appbar/appbar.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -22,15 +32,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [			AppComponent, AppbarComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     CoreModule,
     SharedModule,
-    HomeModule,
-    DetailModule,
+    NewSampleModule,
+    StatisticsModule,
+    HistoryModule,
+    ResultModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
@@ -38,7 +50,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule,
+    LayoutModule,
+    IndicatorsModule,
+    ButtonsModule,
+    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
