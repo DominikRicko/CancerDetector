@@ -30,7 +30,7 @@ export class AppbarComponent implements OnInit {
     this.languageList = ['HR', 'EN'];
   }
 
-  public selectedLanguage(e : string) : void{
+  public selectLanguage(e : string) : void{
     switch(e){
       case 'HR': this.translate.setDefaultLang('hr'); break;
       case 'EN': this.translate.setDefaultLang('en'); break;
