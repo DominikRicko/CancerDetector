@@ -26,6 +26,12 @@ import { ResultModule } from './result/result.module';
 import { AppComponent } from './app.component';
 import { AppbarComponent } from './appbar/appbar.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+
+
+
 
 
 // AoT requires an exported function for factories
@@ -58,7 +64,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     IndicatorsModule,
     ButtonsModule,
     NavigationModule,
-    DropDownsModule
+    DropDownsModule,
+    GridModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
