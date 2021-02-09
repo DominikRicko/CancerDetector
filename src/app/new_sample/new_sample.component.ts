@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SampleData } from '../shared/sampleData/SampleData';
 import * as SampleEnums from '../shared/sampleData/SampleData.enum';
+import { WebService } from '../webService/Web.service';
 
 @Component({
   selector: 'app-home',
@@ -12,50 +13,39 @@ export class NewSampleComponent implements OnInit {
 
   public sampleForm: FormGroup;
   readonly genderList : SampleEnums.Sex[] = [];
-  readonly patientCohortList : SampleEnums.Cohort[] = [];
-  readonly sampleOrigin: SampleEnums.Origin[] = [];
-  readonly diagnosedStageList : SampleEnums.Stage[] = [];
-  readonly benignDiagnosisList : SampleEnums.BenignSampleDiagnosis[] = [];
 
   public sample : SampleData;
 
-  constructor() {
+  constructor(private webService : WebService) {
 
     this.sampleForm = new FormGroup({
-      sampleId : new FormControl(),
       age : new FormControl(),
       sex : new FormControl(),
-      patientCohort : new FormControl(),
-      sampleOrigin : new FormControl(),
-      plasmaCA19_9 : new FormControl(),
       creatine : new FormControl(),
-      stage : new FormControl(),
-      benign_sample_diagnosis : new FormControl()
+      lyve1 : new FormControl(),
+      reg1b : new FormControl(),
+      tff1 : new FormControl(),
+      reg1a : new FormControl()
     });
 
     for (const enumValue of Object.values(SampleEnums.Sex)) this.genderList.push(enumValue);
-    for (const enumValue of Object.values(SampleEnums.Cohort)) this.patientCohortList.push(enumValue);
-    for (const enumValue of Object.values(SampleEnums.Origin)) this.sampleOrigin.push(enumValue);
-    for (const enumValue of Object.values(SampleEnums.Stage)) this.diagnosedStageList.push(enumValue);
-    for (const enumValue of Object.values(SampleEnums.BenignSampleDiagnosis)) this.benignDiagnosisList.push(enumValue);
 
   }
 
   public sendAnalysisRequest() : void {
 
     this.sample = new SampleData(
-      this.sampleForm.get('sampleId').value,
       this.sampleForm.get('age').value,
       this.sampleForm.get('sex').value,
-      this.sampleForm.get('patientCohort').value,
-      this.sampleForm.get('sampleOrigin').value,
       this.sampleForm.get('creatine').value,
-      this.sampleForm.get('plasmaCA19_9').value,
-      this.sampleForm.get('stage').value,
-      this.sampleForm.get('benign_sample_diagnosis').value
+      this.sampleForm.get('lyve1').value,
+      this.sampleForm.get('reg1b').value,
+      this.sampleForm.get('tff1').value,
+      this.sampleForm.get('reg1a').value
     );
 
-    console.log(this.sample);
+    this.webService.PostRequest(this.sample);
+
   }
 
   ngOnInit(): void { }

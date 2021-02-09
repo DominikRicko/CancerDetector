@@ -1,62 +1,54 @@
-import { Sex, Cohort, Origin, Stage, BenignSampleDiagnosis } from './SampleData.enum';
+import { Sex } from './SampleData.enum';
 import { SampleAnalysisResult } from './SampleAnalysisResult';
+import { IWebRequestable } from '../../webService/IWebRequestable';
 
-export class SampleData {
-
-  public get ID() : string {
-    return this._ID;
-  }
-
-  public get age() : number {
-    return this._age;
-  }
-
-  public get sex() : Sex {
-    return this._sex;
-  }
-
-  public get cohort() : Cohort {
-    return this._cohort;
-  }
-
-  public get origin() : Origin {
-    return this._origin;
-  }
-
-  public get creatine() : number {
-    return this._creatine;
-  }
-
-  public get plasmaCA19_9() : number {
-    return this._plasmaCA19_9;
-  }
-
-  public get stage() : Stage {
-    return this._stage;
-  }
-
-  public get benignSampleDiagnosis() : BenignSampleDiagnosis {
-    return this._benignSampleDiagnosis;
-  }
+export class SampleData implements IWebRequestable{
 
   private analysisResult : SampleAnalysisResult;
 
   public constructor(
-    private _ID : string,
-    private _age : number,
-    private _sex : Sex,
-    private _cohort : Cohort,
-    private _origin : Origin,
-    private _creatine : number,
-    private _plasmaCA19_9 : number,
-    private _stage : Stage,
-    private _benignSampleDiagnosis : BenignSampleDiagnosis){
+    readonly age : number,
+    readonly sex : Sex,
+    readonly creatine : number,
+    readonly LYVE1 : number,
+    readonly REG1B : number,
+    readonly TFF1 : number,
+    readonly REG1A : number
+  ){
 
-      this.analysisResult = null;
-      samples.push(this);
+    this.analysisResult = null;
+    samples.push(this);
+  }
+  generateRequest(): string {
+    const request = {
+      Inputs: {
+        input1: {
+          ColumnNames: [
+            "age",
+            "sex",
+            "creatine",
+            "LYVE1",
+            "REG1B",
+            "TFF1",
+            "REG1A"
+          ],
+          Values: [
+            this.age,
+            this.sex,
+            this.creatine,
+            this.LYVE1,
+            this.REG1B,
+            this.TFF1,
+            this.REG1A
+          ]
+        }
+      },
+      globalParameters: {}
+    };
 
-    }
+    return JSON.stringify(request);
+  }
 
 }
 
-export var samples : SampleData[] = [];
+export const samples : SampleData[] = [];

@@ -1,63 +1,52 @@
 <form [formGroup]="sampleForm">
   <kendo-formfield>
-      <kendo-floatinglabel text="Enter Age">
+      <kendo-floatinglabel text="Age">
         <kendo-numerictextbox formControlName="age"></kendo-numerictextbox>
       </kendo-floatinglabel>
       <kendo-formerror>Error: Age is required.</kendo-formerror>
   </kendo-formfield>
 
   <kendo-formfield>
-    <kendo-floatinglabel text="Sample ID">
-      <kendo-textbox formControlName="sampleId"></kendo-textbox>
-    </kendo-floatinglabel>
-    <kendo-formerror>Error: Sample ID is required.</kendo-formerror>
-  </kendo-formfield>
-
-  <kendo-formfield>
-    <kendo-floatinglabel text="Gender:">
+    <kendo-floatinglabel text="Gender">
       <kendo-dropdownlist [data]="this.genderList" formControlName="sex"></kendo-dropdownlist>
     </kendo-floatinglabel>
     <kendo-formerror>Error: Patient's gender is required.</kendo-formerror>
   </kendo-formfield>
 
   <kendo-formfield>
-    <kendo-floatinglabel text="Patient cohort:">
-      <kendo-dropdownlist [data]="this.patientCohortList" formControlName="patientCohort"></kendo-dropdownlist>
-    </kendo-floatinglabel>
-    <kendo-formerror>Error: Patient cohort is required.</kendo-formerror>
-  </kendo-formfield>
-
-  <kendo-formfield>
-    <kendo-floatinglabel text="Sample origin:">
-      <kendo-dropdownlist [data]="this.sampleOrigin" formControlName="sampleOrigin"></kendo-dropdownlist>
-    </kendo-floatinglabel>
-    <kendo-formerror>Error: Sample origin is required.</kendo-formerror>
-  </kendo-formfield>
-
-  <kendo-formfield>
-    <kendo-floatinglabel text="PlasmaCA19_9 level:">
-      <kendo-numerictextbox formControlName="plasmaCA19_9"></kendo-numerictextbox>
-    </kendo-floatinglabel>
-    <kendo-formerror>Error: PlasmaCA19_9 level is required.</kendo-formerror>
-  </kendo-formfield>
-
-  <kendo-formfield>
-    <kendo-floatinglabel text="Creatine level:">
+    <kendo-floatinglabel text="Creatine level">
       <kendo-numerictextbox formControlName="creatine"></kendo-numerictextbox>
     </kendo-floatinglabel>
     <kendo-formerror>Error: Creatine level is required.</kendo-formerror>
   </kendo-formfield>
 
   <kendo-formfield>
-    <kendo-floatinglabel text="Diagnosed stage:">
-      <kendo-dropdownlist [data]="this.diagnosedStageList" formControlName="stage"></kendo-dropdownlist>
+    <kendo-floatinglabel text="LYVE1 amount">
+      <kendo-numerictextbox formControlName="lyve1"></kendo-numerictextbox>
     </kendo-floatinglabel>
+    <kendo-formerror>Error: LYVE1 amount is required.</kendo-formerror>
+  </kendo-formfield>
+
+
+  <kendo-formfield>
+    <kendo-floatinglabel text="REG1B amount">
+      <kendo-numerictextbox formControlName="reg1b"></kendo-numerictextbox>
+    </kendo-floatinglabel>
+    <kendo-formerror>Error: REG1B amount is required.</kendo-formerror>
   </kendo-formfield>
 
   <kendo-formfield>
-    <kendo-floatinglabel text="Benign diagnosis:">
-      <kendo-dropdownlist [data]="this.benignDiagnosisList" formControlName="benign_sample_diagnosis"></kendo-dropdownlist>
+    <kendo-floatinglabel text="TFF1 amount">
+      <kendo-numerictextbox formControlName="tff1"></kendo-numerictextbox>
     </kendo-floatinglabel>
+    <kendo-formerror>Error: TFF1 amount is required.</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-floatinglabel text="REG1A amount">
+      <kendo-numerictextbox formControlName="reg1a"></kendo-numerictextbox>
+    </kendo-floatinglabel>
+    <kendo-formerror>Error: REG1A amount is required.</kendo-formerror>
   </kendo-formfield>
 
 </form>
