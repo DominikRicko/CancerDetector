@@ -1,22 +1,22 @@
 export enum Sex{
-  MALE = "male",
-  FEMALE = "female"
+  Male = "Male",
+  Female = "Female"
 }
 
 export enum Cohort{
-  COHORT1 = "Cohort1",
-  COHORT2 = "Cohort2"
+  Cohort1 = "Cohort 1",
+  Cohort2 = "Cohort 2"
 }
 
 export enum Origin{
-  BPTB = "",
-  LIV = "",
-  ESP = "",
-  UCL = ""
+  BPTB = "Barts Pancreas Tissue Bank, London, UK",
+  LIV = "Liverpool University, UK",
+  ESP = "Spanish National Cancer Research Centre, Madrid, Spain",
+  UCL = "University College London, UK"
 }
 
 export enum Stage{
-  NONE="null",
+  null="None",
   IA="IA",
   IB="IB",
   IIA="IIA",
@@ -26,7 +26,7 @@ export enum Stage{
 }
 
 export enum BenignSampleDiagnosis{
-  NONE="null",
+  null="None",
   PANCREATITIS="Pancreatitis",
   CHRONIC_PANCREATITIS="Pancreatitis (Chronic)",
   GALLSTONES="Gallstones",
@@ -35,6 +35,6 @@ export enum BenignSampleDiagnosis{
 }
 
 export enum Diagnosis{
-  "POSITIVE"="cancer",
-  "NEGATIVE"="not cancer"
+  "POSITIVE"="Cancer",
+  "NEGATIVE"="Not cancer"
 }

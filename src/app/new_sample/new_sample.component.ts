@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { SampleData } from '../shared/sampleData/SampleData';
+import * as SampleEnums from '../shared/sampleData/SampleData.enum';
 
 @Component({
   selector: 'app-home',
@@ -9,22 +11,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class NewSampleComponent implements OnInit {
 
   public sampleForm: FormGroup;
-  readonly genderList : Array<string> = ["Male", "Female"];
-  readonly patientCohortList : Array<string> = ["Cohort 1", "Cohort 2"];
-  readonly sampleOrigin: Array<string> = [
-    "Barts Pancreas Tissue Bank, London, UK",
-    "Spanish National Cancer Research Centre, Madrid, Spain",
-    "Liverpool University, UK",
-    "University College London, UK",
-  ];
-  readonly diagnosedStageList : Array<string> = ["IA", "IB", "IIA", "IIIB", "III", "IV"];
-  readonly benignDiagnosisList : Array<string> = [
-    "Pancreatitis",
-    "Chronic pancreatitis",
-    "Galistones",
-    "Alchol-chronic pancreatitis",
-    "Cholecystitis"
-  ];
+  readonly genderList : SampleEnums.Sex[] = [];
+  readonly patientCohortList : SampleEnums.Cohort[] = [];
+  readonly sampleOrigin: SampleEnums.Origin[] = [];
+  readonly diagnosedStageList : SampleEnums.Stage[] = [];
+  readonly benignDiagnosisList : SampleEnums.BenignSampleDiagnosis[] = [];
+
+  public sample : SampleData;
 
   constructor() {
 
@@ -40,18 +33,29 @@ export class NewSampleComponent implements OnInit {
       benign_sample_diagnosis : new FormControl()
     });
 
+    for (const enumValue of Object.values(SampleEnums.Sex)) this.genderList.push(enumValue);
+    for (const enumValue of Object.values(SampleEnums.Cohort)) this.patientCohortList.push(enumValue);
+    for (const enumValue of Object.values(SampleEnums.Origin)) this.sampleOrigin.push(enumValue);
+    for (const enumValue of Object.values(SampleEnums.Stage)) this.diagnosedStageList.push(enumValue);
+    for (const enumValue of Object.values(SampleEnums.BenignSampleDiagnosis)) this.benignDiagnosisList.push(enumValue);
 
   }
 
   public sendAnalysisRequest() : void {
-    console.log(this.sampleForm.get('age').value);
-    console.log(this.sampleForm.get('sampleId').value);
-    console.log(this.sampleForm.get('sex').value);
-    console.log(this.sampleForm.get('patientCohort').value);
-    console.log(this.sampleForm.get('plasmaCA19_9').value);
-    console.log(this.sampleForm.get('creatine').value);
-    console.log(this.sampleForm.get('stage').value);
-    console.log(this.sampleForm.get('benign_sample_diagnosis').value);
+
+    this.sample = new SampleData(
+      this.sampleForm.get('sampleId').value,
+      this.sampleForm.get('age').value,
+      this.sampleForm.get('sex').value,
+      this.sampleForm.get('patientCohort').value,
+      this.sampleForm.get('sampleOrigin').value,
+      this.sampleForm.get('creatine').value,
+      this.sampleForm.get('plasmaCA19_9').value,
+      this.sampleForm.get('stage').value,
+      this.sampleForm.get('benign_sample_diagnosis').value
+    );
+
+    console.log(this.sample);
   }
 
   ngOnInit(): void { }
