@@ -25,6 +25,8 @@ import { ResultModule } from './result/result.module';
 
 import { AppComponent } from './app.component';
 import { AppbarComponent } from './appbar/appbar.component';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -55,7 +57,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     LayoutModule,
     IndicatorsModule,
     ButtonsModule,
-    NavigationModule
+    NavigationModule,
+    DropDownsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

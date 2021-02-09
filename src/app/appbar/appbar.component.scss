@@ -2,15 +2,26 @@
 kendo-appbar{
   display: flex;
   margin: auto;
-}
-
-kendo-appbar-section{
-  width: 32%;
   justify-content: center;
 }
 
-kendo-appbar a button , kendo-appbar a{
+kendo-appbar-section{
+  width: 30%;
+  justify-content: center;
+}
+
+kendo-appbar-section a button , kendo-appbar a{
   width: 100%;
   font-size: large;
   height: fit-content;
+}
+
+kendo-appbar-section.language{
+  width: 5%;
+  justify-content: center;
+}
+
+kendo-dropdownbutton{
+  width: 100%;
+  height: 100%;
 }

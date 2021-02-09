@@ -23,5 +23,14 @@
       </button>
     </a>
   </kendo-appbar-section>
+
+  <kendo-appbar-section class="language">
+    <kendo-dropdownlist [data]="this.languageList" [value]="this.languageList[1]" (valueChange)="this.selectedLanguage($event)">
+    </kendo-dropdownlist>
+  </kendo-appbar-section>
+
+
 </kendo-appbar>
+
+
 <br />
