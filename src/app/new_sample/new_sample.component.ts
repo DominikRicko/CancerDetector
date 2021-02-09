@@ -19,7 +19,12 @@ export class NewSampleComponent implements OnInit {
   ];
   readonly diagnosedStageList : Array<string> = ["IA", "IB", "IIA", "IIIB", "III", "IV"];
   readonly benignDiagnosisList : Array<string> = [
-    "Pancreatitis", "Chronic pancreatitis", "Galistones", "Alchol-chronic pancreatitis", "Cholecystitis"];
+    "Pancreatitis",
+    "Chronic pancreatitis",
+    "Galistones",
+    "Alchol-chronic pancreatitis",
+    "Cholecystitis"
+  ];
 
   constructor() {
 
@@ -38,8 +43,15 @@ export class NewSampleComponent implements OnInit {
 
   }
 
-  public doSomething() : void {
+  public sendAnalysisRequest() : void {
     console.log(this.sampleForm.get('age').value);
+    console.log(this.sampleForm.get('sampleId').value);
+    console.log(this.sampleForm.get('sex').value);
+    console.log(this.sampleForm.get('patientCohort').value);
+    console.log(this.sampleForm.get('plasmaCA19_9').value);
+    console.log(this.sampleForm.get('creatine').value);
+    console.log(this.sampleForm.get('stage').value);
+    console.log(this.sampleForm.get('benign_sample_diagnosis').value);
   }
 
   ngOnInit(): void { }

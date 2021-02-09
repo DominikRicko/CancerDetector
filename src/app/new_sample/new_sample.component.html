@@ -55,16 +55,16 @@
   </kendo-formfield>
 
   <kendo-formfield>
-    <kendo-floatinglabel text="Benigned diagnosis:">
-      <kendo-dropdownlist [data]="this.benignDiagnosisList" formControlName="stage"></kendo-dropdownlist>
+    <kendo-floatinglabel text="Benign diagnosis:">
+      <kendo-dropdownlist [data]="this.benignDiagnosisList" formControlName="benign_sample_diagnosis"></kendo-dropdownlist>
     </kendo-floatinglabel>
   </kendo-formfield>
 
 </form>
 
-<!--
+<a routerLink="/result">
+  <button kendoButton (click)="sendAnalysisRequest()">
+    Analyze
+  </button>
+</a>
 
-<button kendoButton (click)="doSomething()"></button>
-
-<a routerLink="/result">{{'TABS.RESULT.TITLE' | translate}}</a>
--->
