@@ -1,5 +1,5 @@
 .sampleForm {
-  display: flex;
+  display: -ms-inline-grid;
   justify-content: space-around;
-  width: 460px;
+  width: 100%;
 }

@@ -11,6 +11,7 @@ import { FloatingLabelModule } from '@progress/kendo-angular-label';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 @NgModule({
   declarations: [NewSampleComponent],
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FloatingLabelModule,
     ButtonsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DropDownsModule
   ]
 })
 export class NewSampleModule {}

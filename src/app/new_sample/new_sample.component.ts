@@ -9,6 +9,17 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class NewSampleComponent implements OnInit {
 
   public sampleForm: FormGroup;
+  readonly genderList : Array<string> = ["Male", "Female"];
+  readonly patientCohortList : Array<string> = ["Cohort 1", "Cohort 2"];
+  readonly sampleOrigin: Array<string> = [
+    "Barts Pancreas Tissue Bank, London, UK",
+    "Spanish National Cancer Research Centre, Madrid, Spain",
+    "Liverpool University, UK",
+    "University College London, UK",
+  ];
+  readonly diagnosedStageList : Array<string> = ["IA", "IB", "IIA", "IIIB", "III", "IV"];
+  readonly benignDiagnosisList : Array<string> = [
+    "Pancreatitis", "Chronic pancreatitis", "Galistones", "Alchol-chronic pancreatitis", "Cholecystitis"];
 
   constructor() {
 
