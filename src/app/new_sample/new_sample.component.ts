@@ -33,17 +33,19 @@ export class NewSampleComponent implements OnInit {
 
   }
 
-  public sendAnalysisRequest() : void {
-
-    if(
-      this.sampleForm.get('age').value != null &&
+  public areFormFieldsNotEmpty() : boolean{
+    return this.sampleForm.get('age').value != null &&
       this.sampleForm.get('sex').value != null &&
       this.sampleForm.get('creatinine').value !=null &&
       this.sampleForm.get('lyve1').value != null &&
       this.sampleForm.get('reg1b').value != null &&
       this.sampleForm.get('tff1').value != null &&
-      this.sampleForm.get('reg1a').value != null
-    ){
+      this.sampleForm.get('reg1a').value != null;
+  }
+
+  public sendAnalysisRequest() : void {
+
+    if( this.areFormFieldsNotEmpty() ){
       this.sample = new SampleData(
         this.sampleForm.get('age').value,
         this.sampleForm.get('sex').value,
@@ -55,6 +57,7 @@ export class NewSampleComponent implements OnInit {
       );
 
       this.webService.PostRequest(this.sample);
+
     }
 
   }

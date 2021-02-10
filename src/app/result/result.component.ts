@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SampleData } from '../shared/sampleData/SampleData';
 
 @Component({
   selector: 'app-result',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
 
+  @Input() sampleData : SampleData;
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() : void {
   }
 
 }

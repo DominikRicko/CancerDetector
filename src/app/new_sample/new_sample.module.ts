@@ -9,22 +9,26 @@ import { SharedModule } from '../shared/shared.module';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { FloatingLabelModule } from '@progress/kendo-angular-label';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { LayoutModule } from '@progress/kendo-angular-layout';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { ResultModule } from '../result/result.module';
 
 @NgModule({
   declarations: [NewSampleComponent],
   imports: [
     SharedModule,
     NewSampleRoutingModule,
+    ResultModule,
     CommonModule,
     InputsModule,
     FloatingLabelModule,
     ButtonsModule,
     FormsModule,
     ReactiveFormsModule,
-    DropDownsModule
+    DropDownsModule,
+    LayoutModule
   ]
 })
 export class NewSampleModule {}

@@ -1,5 +1,15 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'TABS.STATISTICS.TITLE' | translate }}
-  </h1>
-</div>
+<kendo-chart [style.height.px]="200" [transitions]="false">
+  <kendo-chart-series>
+    <kendo-chart-series-item
+      [autoFit]="true"
+        type="pie" [data]="data"
+        categoryField="kind" field="share">
+      <kendo-chart-series-item-labels
+        position="outsideEnd"
+        color="#000"
+        [content]="labelContent">
+      </kendo-chart-series-item-labels>
+    </kendo-chart-series-item>
+  </kendo-chart-series>
+  <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+</kendo-chart>

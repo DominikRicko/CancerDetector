@@ -28,6 +28,8 @@ import { AppbarComponent } from './appbar/appbar.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ChartsModule } from '@progress/kendo-angular-charts';
+import { GaugesModule } from '@progress/kendo-angular-gauges';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -61,7 +63,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NavigationModule,
     DropDownsModule,
     GridModule,
-    ChartsModule
+    ChartsModule,
+    GaugesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
