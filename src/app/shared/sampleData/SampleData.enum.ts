@@ -1,6 +1,6 @@
 export enum Sex{
-  Male = "Male",
-  Female = "Female"
+  M = "Male",
+  F = "Female"
 }
 
 export enum Diagnosis{

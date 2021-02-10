@@ -9,7 +9,7 @@ export class SampleData implements IWebRequestable{
   public constructor(
     readonly age : number,
     readonly sex : Sex,
-    readonly creatine : number,
+    readonly creatinine : number,
     readonly LYVE1 : number,
     readonly REG1B : number,
     readonly TFF1 : number,
@@ -20,30 +20,25 @@ export class SampleData implements IWebRequestable{
     samples.push(this);
   }
   generateRequest(): string {
+
+    const gender = (this.sex==Sex.M)?('M'):('F');
+
     const request = {
-      Inputs: {
-        input1: {
-          ColumnNames: [
-            "age",
-            "sex",
-            "creatine",
-            "LYVE1",
-            "REG1B",
-            "TFF1",
-            "REG1A"
-          ],
-          Values: [
-            this.age,
-            this.sex,
-            this.creatine,
-            this.LYVE1,
-            this.REG1B,
-            this.TFF1,
-            this.REG1A
+      "Inputs": {
+        "input1":
+          [
+            {
+              'age': `${this.age}`,
+              'sex': `${gender}`,
+              'creatinine': `${this.creatinine}`,
+              'LYVE1': `${this.LYVE1}`,
+              'REG1B': `${this.REG1B}`,
+              'TFF1': `${this.TFF1}`,
+              'REG1A': `${this.REG1A}`
+            }
           ]
-        }
       },
-      globalParameters: {}
+      "GlobalParameters": {}
     };
 
     return JSON.stringify(request);

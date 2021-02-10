@@ -21,7 +21,7 @@ export class NewSampleComponent implements OnInit {
     this.sampleForm = new FormGroup({
       age : new FormControl(),
       sex : new FormControl(),
-      creatine : new FormControl(),
+      creatinine : new FormControl(),
       lyve1 : new FormControl(),
       reg1b : new FormControl(),
       tff1 : new FormControl(),
@@ -37,7 +37,7 @@ export class NewSampleComponent implements OnInit {
     this.sample = new SampleData(
       this.sampleForm.get('age').value,
       this.sampleForm.get('sex').value,
-      this.sampleForm.get('creatine').value,
+      this.sampleForm.get('creatinine').value,
       this.sampleForm.get('lyve1').value,
       this.sampleForm.get('reg1b').value,
       this.sampleForm.get('tff1').value,
