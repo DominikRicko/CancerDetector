@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { NewSample } from './new_sample.component';
+import { NewSampleComponent } from './new_sample.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
-  let component: NewSample;
-  let fixture: ComponentFixture<NewSample>;
+  let component: NewSampleComponent;
+  let fixture: ComponentFixture<NewSampleComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [NewSample],
+      declarations: [NewSampleComponent],
       imports: [TranslateModule.forRoot(), RouterTestingModule]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewSample);
+    fixture = TestBed.createComponent(NewSampleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,28 @@
 {
   "TABS": {
     "NEW_SAMPLE": {
-      "TITLE": "New sample"
+      "TITLE": "New sample",
+      "ANALYZE": "Analyze",
+
+      "SAMPLEDATA":{
+        "AGE": "Age",
+        "SEX": "Gender",
+        "CREATININE_LEVEL": "Creatinine level",
+        "REG1A_AMOUNT": "REG1A protein amount",
+        "REG1B_AMOUNT": "REG1B protein amount",
+        "TFF1_AMOUNT": "TFF1 protein amount",
+        "LYVE1_AMOUNT": "LYVE1 protein amount"
+      },
+
+      "ERROR":{
+        "AGE":"Error: Age is required.",
+        "SEX":"Error: Patient's gender is required.",
+        "CREATININE_LEVEL":"Error: Creatinine level is required.",
+        "REG1A_AMOUNT":"Error: REG1A amount is required.",
+        "REG1B_AMOUNT":"Error: REG1B amount is required.",
+        "TFF1_AMOUNT":"Error: TFF1 amount is required.",
+        "LYVE1_AMOUNT":"Error: LYVE1 amount is required."
+      }
     },
     "HISTORY": {
       "TITLE": "History"
@@ -12,5 +33,10 @@
     "RESULT": {
       "TITLE": "Result"
     }
+  },
+  "DATA":{
+    "MALE":"Male",
+    "FEMALE":"Female"
   }
+
 }

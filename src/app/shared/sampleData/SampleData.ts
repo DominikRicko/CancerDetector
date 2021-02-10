@@ -1,6 +1,6 @@
-import { Sex } from './SampleData.enum';
 import { SampleAnalysisResult } from './SampleAnalysisResult';
 import { IWebRequestable } from '../../webService/IWebRequestable';
+import { Gender } from './Gender';
 
 export class SampleData implements IWebRequestable{
 
@@ -8,7 +8,7 @@ export class SampleData implements IWebRequestable{
 
   public constructor(
     readonly age : number,
-    readonly sex : Sex,
+    readonly sex : Gender,
     readonly creatinine : number,
     readonly LYVE1 : number,
     readonly REG1B : number,
@@ -21,15 +21,13 @@ export class SampleData implements IWebRequestable{
   }
   generateRequest(): string {
 
-    const gender = (this.sex==Sex.M)?('M'):('F');
-
     const request = {
       "Inputs": {
         "input1":
           [
             {
               'age': `${this.age}`,
-              'sex': `${gender}`,
+              'sex': `${this.sex.exportName}`,
               'creatinine': `${this.creatinine}`,
               'LYVE1': `${this.LYVE1}`,
               'REG1B': `${this.REG1B}`,
