@@ -44,8 +44,8 @@ export class AppbarComponent implements OnInit {
     this.buttonStatisticsIsSelected = false;
 
     router.events.pipe(filter((e : RouterEvent)  => e instanceof NavigationEnd))
-      .subscribe((e: RouterEvent) => {
-        this.changePrimaryButton(e.url);
+      .subscribe((e: NavigationEnd) => {
+        this.changePrimaryButton(e.urlAfterRedirects);
       });
   }
 
