@@ -8,9 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 
 import { GaugesModule } from '@progress/kendo-angular-gauges';
 
+import { LabelModule } from '@progress/kendo-angular-label';
+
 @NgModule({
   declarations: [ResultComponent],
-  imports: [CommonModule, SharedModule, ResultRoutingModule, GaugesModule],
+  imports: [CommonModule, SharedModule, ResultRoutingModule, GaugesModule, LabelModule],
   exports: [ResultComponent],
 })
 export class ResultModule {}

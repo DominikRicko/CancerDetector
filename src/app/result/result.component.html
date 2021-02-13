@@ -1,3 +1,32 @@
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.AGE' | translate}}">
+  <kendo-label [text]="this.sampleData.age"></kendo-label>
+</kendo-label>
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.SEX' | translate}}">
+  <kendo-label [text]="this.sampleData.sex.exportName"></kendo-label>
+</kendo-label>
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.CREATININE_LEVEL' | translate}}">
+  <kendo-label [text]="this.sampleData.creatinine"></kendo-label>
+</kendo-label>
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.LYVE1_AMOUNT' | translate}}">
+  <kendo-label [text]="this.sampleData.LYVE1"></kendo-label>
+</kendo-label>
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.REG1B_AMOUNT' | translate}}">
+  <kendo-label [text]="this.sampleData.REG1B"></kendo-label>
+</kendo-label>
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.TFF1_AMOUNT' | translate}}">
+  <kendo-label [text]="this.sampleData.TFF1"></kendo-label>
+</kendo-label>
+
+<kendo-label text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.REG1A_AMOUNT' | translate}}">
+  <kendo-label [text]="this.sampleData.REG1A"></kendo-label>
+</kendo-label>
+
 <kendo-arcgauge [value]="this.sampleData.precision" [scale]="{ max: 1 }">
   <ng-template kendoArcGaugeCenterTemplate let-value="value">
       {{ value*100 }}%
