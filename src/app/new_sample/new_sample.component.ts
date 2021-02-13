@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SampleData } from '../shared/sampleData/SampleData';
 import { WebService } from '../webService/Web.service';
 import { Gender, GenderList} from '../shared/sampleData/Gender';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,12 @@ import { Gender, GenderList} from '../shared/sampleData/Gender';
 export class NewSampleComponent implements OnInit {
 
   public sampleForm: FormGroup;
-  readonly genderList : Gender[];
+  readonly genderList : Array<Gender>;
 
-  public sample : SampleData;
-
-  constructor(private webService : WebService, private translator : TranslateService) {
+  constructor(
+    private webService : WebService,
+    private translator : TranslateService,
+    private router : Router) {
 
     this.sampleForm = new FormGroup({
       age : new FormControl(),
@@ -46,9 +48,10 @@ export class NewSampleComponent implements OnInit {
   public sendAnalysisRequest() : void {
 
     if( this.areFormFieldsNotEmpty() ){
-      this.sample = new SampleData(
+
+      this.webService.PostRequest(
         this.sampleForm.get('age').value,
-        this.sampleForm.get('sex').value,
+        (this.sampleForm.get('sex').value as Gender).exportName,
         this.sampleForm.get('creatinine').value,
         this.sampleForm.get('lyve1').value,
         this.sampleForm.get('reg1b').value,
@@ -56,10 +59,12 @@ export class NewSampleComponent implements OnInit {
         this.sampleForm.get('reg1a').value
       );
 
-      this.webService.PostRequest(this.sample);
-
     }
 
+  }
+
+  public EventOccured(sample : SampleData) : void{
+    this.router.navigateByUrl('../result');
   }
 
   ngOnInit(): void { }

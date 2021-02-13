@@ -10,7 +10,11 @@ export class ResultComponent implements OnInit {
 
   @Input() sampleData : SampleData;
 
-  constructor() { }
+
+
+  constructor() {
+
+  }
 
   ngOnInit() : void {
   }

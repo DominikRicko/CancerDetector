@@ -1,5 +1,4 @@
-<kendo-splitter orientation="horizontal">
-  <kendo-splitter-pane>
+
     <form [formGroup]="sampleForm">
       <kendo-formfield>
           <kendo-floatinglabel text= "{{'TABS.NEW_SAMPLE.SAMPLEDATA.AGE' | translate}}">
@@ -10,7 +9,8 @@
 
       <kendo-formfield>
         <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.SEX' | translate}}">
-          <kendo-dropdownlist [data]="this.genderList" formControlName="sex"></kendo-dropdownlist>
+          <kendo-dropdownlist [data]="this.genderList" formControlName="sex">
+          </kendo-dropdownlist>
         </kendo-floatinglabel>
         <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.SEX' | translate}}</kendo-formerror>
       </kendo-formfield>
@@ -56,13 +56,6 @@
       {{'TABS.NEW_SAMPLE.ANALYZE' | translate}}
     </button>
 
-  </kendo-splitter-pane>
-
-  <kendo-splitter-pane>
-    <app-result [sampleData]="this.sample">
-    </app-result>
-  </kendo-splitter-pane>
-</kendo-splitter>
 
 
 

@@ -1,3 +1,5 @@
-<label>
-  This is results component
-</label>
+<kendo-arcgauge [value]="this.sampleData.precision" [scale]="{ max: 100 }">
+  <ng-template kendoArcGaugeCenterTemplate let-value="this.sampleData.precision">
+      {{ value }}%
+  </ng-template>
+</kendo-arcgauge>

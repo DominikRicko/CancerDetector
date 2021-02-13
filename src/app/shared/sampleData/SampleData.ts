@@ -1,47 +1,67 @@
-import { SampleAnalysisResult } from './SampleAnalysisResult';
-import { IWebRequestable } from '../../webService/IWebRequestable';
-import { Gender } from './Gender';
+import { DiagnosisText, DiagnosisArray } from './DiagnosisText';
+import { Gender, GenderList } from './Gender';
 
-export class SampleData implements IWebRequestable{
-
-  private analysisResult : SampleAnalysisResult;
+export class SampleData {
 
   public constructor(
-    readonly age : number,
-    readonly sex : Gender,
-    readonly creatinine : number,
-    readonly LYVE1 : number,
-    readonly REG1B : number,
-    readonly TFF1 : number,
-    readonly REG1A : number
-  ){
-
-    this.analysisResult = null;
-    samples.push(this);
+    readonly age: number,
+    readonly sex: Gender,
+    readonly creatinine: number,
+    readonly LYVE1: number,
+    readonly REG1B: number,
+    readonly TFF1: number,
+    readonly REG1A: number,
+    readonly diagnosis: number,
+    readonly precision: number
+  ) {
   }
-  generateRequest(): string {
 
-    const request = {
-      "Inputs": {
-        "input1":
-          [
-            {
-              'age': `${this.age}`,
-              'sex': `${this.sex.exportName}`,
-              'creatinine': `${this.creatinine}`,
-              'LYVE1': `${this.LYVE1}`,
-              'REG1B': `${this.REG1B}`,
-              'TFF1': `${this.TFF1}`,
-              'REG1A': `${this.REG1A}`
-            }
-          ]
-      },
-      "GlobalParameters": {}
-    };
+  public getDiagnosisText(): DiagnosisText {
 
-    return JSON.stringify(request);
+    for (const diagnosisText of DiagnosisArray) {
+      if (diagnosisText.exportName == this.diagnosis.toString()) return diagnosisText;
+    }
+
+    return null;
+
+  }
+
+  public static ParseJSON(JSONObject: any): SampleData {
+
+    const values = JSONObject.Results.output1[0];
+
+    let correctGender : Gender;
+
+    for(const gender of GenderList){
+
+      if(gender.exportName == values.sex)
+        correctGender = gender;
+
+    }
+
+    console.log(values.age,
+                correctGender,
+                values.creatinine,
+                values.LYVE1,
+                values.REG1B,
+                values.TFF1,
+                values.REG1A,
+                values["Scored Labels"],
+                values["Scored Probabilities"]);
+
+
+    return new SampleData(
+      values.age,
+      values.sex,
+      values.creatinine,
+      values.LYVE1,
+      values.REG1B,
+      values.TFF1,
+      values.REG1A,
+      values["Scored Labels"],
+      values["Scored Probabilities"]);
   }
 
 }
 
-export const samples : SampleData[] = [];
+export const samples: SampleData[] = [];
