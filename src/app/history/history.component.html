@@ -9,14 +9,9 @@
   </ng-template>
 
   <kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}" [class]="{'text-center': true}"
-     [columnMenu]="false" showSelectAll="true"></kendo-grid-checkbox-column>
+    [columnMenu]="false" showSelectAll="true"></kendo-grid-checkbox-column>
 
   <kendo-grid-column-group title="Sample" [columnMenu]="false">
-    <kendo-grid-column field="sampleID" title="ID" [width]="70">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.sampleId }}</div>
-      </ng-template>
-    </kendo-grid-column>
 
     <kendo-grid-column field="age" title="Patient's age" [width]="120">
       <ng-template kendoGridCellTemplate let-dataItem>
@@ -24,50 +19,39 @@
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="sex" title="Gender" [width]="90" [class]="{'text-center': true}" >
+    <kendo-grid-column field="sex" title="Gender" [width]="90" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.sex }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="patientCohort" title="Cohort" [width]="90" [class]="{'text-center': true}"
-      >
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.patientCohort }}</div>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="sampleOrigin" title="Sample origin" [width]="130" [class]="{'text-center': true}"
-      >
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.sampleOrigin }}</div>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="plasmaCA19_9" title="Plasma_CA19_9 level" [width]="180" [class]="{'text-center': true}"
-      >
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.plasmaCA19_9 }}</div>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="creatine" title="Creatine level" [width]="130" [class]="{'text-center': true}"
-      >
+    <kendo-grid-column field="creatine" title="Creatine level" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.creatine }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="stage" title="Stage" [width]="75" [class]="{'text-center': true}" >
+    <kendo-grid-column field="LYVE1" title="LYVE1 amount" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.stage }}</div>
+        <div>{{ dataItem.LYVE1 }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="benignSampleDiagnosis" title="Benign sample diagnosis" [width]="190"
-      [class]="{'text-center': true}" >
+    <kendo-grid-column field="REG1B" title="REG1B amount" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.benignSampleDiagnosis }}</div>
+        <div>{{ dataItem.REG1B }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="TFF1" title="TFF1 amount" [width]="130" [class]="{'text-center': true}">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div>{{ dataItem.TFF1 }}</div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="REG1A" title="REG1A amount" [width]="130" [class]="{'text-center': true}">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div>{{ dataItem.REG1A }}</div>
       </ng-template>
     </kendo-grid-column>
 
@@ -75,13 +59,13 @@
 
   <kendo-grid-column-group title="Analysis result" [columnMenu]="false">
 
-    <kendo-grid-column field="diagnosis" title="Diagnosis" [width]="130"  filter="numeric">
+    <kendo-grid-column field="diagnosis" title="Diagnosis" [width]="130" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.diagnosis }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="precision" title="Precision" [width]="130"  filter="numeric">
+    <kendo-grid-column field="precision" title="Precision" [width]="130" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.precision }}</div>
       </ng-template>
