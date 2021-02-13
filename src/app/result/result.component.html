@@ -1,5 +1,5 @@
-<kendo-arcgauge [value]="this.sampleData.precision" [scale]="{ max: 100 }">
-  <ng-template kendoArcGaugeCenterTemplate let-value="this.sampleData.precision">
-      {{ value }}%
+<kendo-arcgauge [value]="this.sampleData.precision" [scale]="{ max: 1 }">
+  <ng-template kendoArcGaugeCenterTemplate let-value="value">
+      {{ value*100 }}%
   </ng-template>
 </kendo-arcgauge>

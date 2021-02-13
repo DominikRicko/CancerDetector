@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SampleData } from '../shared/sampleData/SampleData';
 import { WebService } from '../webService/Web.service';
-import { Gender, GenderList} from '../shared/sampleData/Gender';
+import { Gender, GenderList, Male} from '../shared/sampleData/Gender';
 import { Router } from '@angular/router';
 
 @Component({
@@ -48,7 +48,7 @@ export class NewSampleComponent implements OnInit {
   public sendAnalysisRequest() : void {
 
     if( this.areFormFieldsNotEmpty() ){
-
+      /*
       this.webService.PostRequest(
         this.sampleForm.get('age').value,
         (this.sampleForm.get('sex').value as Gender).exportName,
@@ -58,13 +58,16 @@ export class NewSampleComponent implements OnInit {
         this.sampleForm.get('tff1').value,
         this.sampleForm.get('reg1a').value
       );
+      */
+      console.log('RandomlyGeneratedBullshitSample');
+      this.EventOccured(new SampleData(23, Male, 0.15, 0.15, 0.15, 0.15, 0.15, 2, 0.15));
 
     }
 
   }
 
   public EventOccured(sample : SampleData) : void{
-    this.router.navigateByUrl('../result');
+    this.router.navigateByUrl('/result', { state: { sample: sample } });
   }
 
   ngOnInit(): void { }
