@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
-import { SampleData } from '../shared/sampleData/SampleData';
-import { WebService } from '../webService/Web.service';
-import { Gender, GenderList, Male} from '../shared/sampleData/Gender';
+import { SampleData, SampleDataContainer } from '../shared/sampleData/SampleData';
+import { AnalysisRequester } from '../shared/analysisRequester/analysisRequester.service';
+import { Gender, GenderList} from '../shared/sampleData/Gender';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,8 +16,7 @@ export class NewSampleComponent implements OnInit {
   readonly genderList : Array<Gender>;
 
   constructor(
-    private webService : WebService,
-    private translator : TranslateService,
+    private analysisRequester : AnalysisRequester,
     private router : Router) {
 
     this.sampleForm = new FormGroup({
@@ -48,20 +46,30 @@ export class NewSampleComponent implements OnInit {
   public sendAnalysisRequest() : void {
 
     if( this.areFormFieldsNotEmpty() ){
-      /*
-      this.webService.PostRequest(
-        this.sampleForm.get('age').value,
-        (this.sampleForm.get('sex').value as Gender).exportName,
-        this.sampleForm.get('creatinine').value,
-        this.sampleForm.get('lyve1').value,
-        this.sampleForm.get('reg1b').value,
-        this.sampleForm.get('tff1').value,
-        this.sampleForm.get('reg1a').value
-      );
-      */
-      console.log('RandomlyGeneratedBullshitSample');
 
-      this.EventOccured(new SampleData(23, Male, 0.15, 0.15, 0.15, 0.15, 0.15, 2, 0.15));
+      // SampleDataContainer.addFromRequest(this.analysisRequester.PostRequest(
+      //   this.sampleForm.get('age').value,
+      //   (this.sampleForm.get('sex').value as Gender).exportName,
+      //   this.sampleForm.get('creatinine').value,
+      //   this.sampleForm.get('lyve1').value,
+      //   this.sampleForm.get('reg1b').value,
+      //   this.sampleForm.get('tff1').value,
+      //   this.sampleForm.get('reg1a').value
+      // ));
+
+      console.error('Generated a sample sample to workaround CORS policy while Node.js server in background.');
+
+      this.EventOccured(
+        SampleDataContainer.addSample({
+          age : 23,
+          sex: 'M',
+          creatinine: 0.15,
+          LYVE1 : 0.15,
+          REG1B : 0.15,
+          TFF1: 0.15,
+          REG1A: 0.15,
+          diagnosis: 2,
+          precision : 0.15}));
 
     }
 

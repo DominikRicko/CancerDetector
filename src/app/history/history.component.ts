@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 
-import { samples, SampleData } from '../shared/sampleData/SampleData';
-import { Male, Female } from '../shared/sampleData/Gender';
+import { SampleDataContainer} from '../shared/sampleData/SampleData';
+import { AnalysisRequester } from '../shared/analysisRequester/analysisRequester.service';
 
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 
@@ -12,51 +12,43 @@ import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
-export class HistoryComponent implements OnInit, AfterViewInit{
+export class HistoryComponent implements OnInit{
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
-  public gridData: any[] = samples;
+  public gridData: any[] = SampleDataContainer.samples;
   public gridView: any[];
 
   public mySelection: string[] = [];
 
-  private csvRecords: any[] = [];
-  private header = true;
-
-  public constructor(private ngxCsvParser: NgxCsvParser){
-    samples.push(new SampleData(12, Male,0.15, 1,2,1,4, 1, 0.12));
-    samples.push(new SampleData(21, Male,0.10, 4,1,3,2, 2, 0.25));
-    samples.push(new SampleData(33, Male,0.10, 2,2,3,2, 2, 0.132));
-    samples.push(new SampleData(17, Female,0.13, 1,1,3,4, 2, 0.34));
-    samples.push(new SampleData(50, Female,0.12, 3,2,1,4, 1, 0.12));
-    samples.push(new SampleData(56, Male,0.11, 5,2,4,1, 1, 0.50));
-
+  public constructor(private ngxCsvParser: NgxCsvParser, private analysisRequester : AnalysisRequester){
+    SampleDataContainer.addSample({age: 12, sex:'M', creatinine: 0.15, LYVE1: 1, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 1, precision: 0.12});
+    SampleDataContainer.addSample({age: 21, sex:'M', creatinine: 0.10, LYVE1: 4, REG1B: 1, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.25});
+    SampleDataContainer.addSample({age: 33, sex:'M', creatinine: 0.10, LYVE1: 2, REG1B: 2, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.132});
+    SampleDataContainer.addSample({age: 17, sex:'F', creatinine: 0.13, LYVE1: 1, REG1B: 1, TFF1: 3, REG1A: 4, diagnosis: 2, precision: 0.34});
+    SampleDataContainer.addSample({age: 50, sex:'F', creatinine: 0.12, LYVE1: 3, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 1, precision: 0.12});
+    SampleDataContainer.addSample({age: 56, sex:'M', creatinine: 0.11, LYVE1: 5, REG1B: 2, TFF1: 4, REG1A: 1, diagnosis: 1, precision: 0.50});
   }
 
   @ViewChild('fileInput', { static: false }) fileImportInput;
 
-  fileChangeListener($event: any): void {
+  private postParseActions : (result: Array<any>) => void;
 
-    // Select the files from the event
-    const files = $event.srcElement.files;
+  fileChangeListener(files: File[]): void {
 
-    // Parse the file you want to select for the operation along with the configuration
-    this.ngxCsvParser.parse(files[0], { header: this.header, delimiter: ',' })
-      .pipe().subscribe((result: Array<any>) => {
-
-        console.log('Result', result);
-        this.csvRecords = result;
-      }, (error: NgxCSVParserError) => {
-        console.log('Error', error);
+    for(const file of files){
+      if (file.type != 'application/vnd.ms-excel') continue; //not CSV
+      const observer = this.ngxCsvParser.parse(file, { header: true, delimiter: ',' }).pipe();
+      observer.subscribe(() => {
+        (error: NgxCSVParserError) => {
+          console.error(error);
+        };
       });
+      observer.subscribe(this.postParseActions);
+    }
 
   }
 
   public ngOnInit(): void {
     this.gridView = this.gridData;
-  }
-
-  public ngAfterViewInit() : void{
-    console.log(this.fileImportInput);
   }
 
   public ImportFile(inputType : string) : void{
@@ -65,24 +57,55 @@ export class HistoryComponent implements OnInit, AfterViewInit{
     this.fileImportInput.nativeElement.click();
   }
 
-
   public ImportSamples(): void{
-    this.ImportFile('.csv');
 
-    //needs to wait for imported file
+    this.postParseActions = (result: Array<any>) => {
 
+      console.log('Result', result);
 
+      for(const resultItem of result){
+        SampleDataContainer.addFromRequest(this.analysisRequester.PostRequest(
+          resultItem.age,
+          resultItem.sex,
+          resultItem.creatinine,
+          resultItem.LYVE1,
+          resultItem.REG1B,
+          resultItem.TFF1,
+          resultItem.REG1A));
+
+      }
+
+      this.ImportFile('.csv');
+    };
   }
 
   public ImportSamplesAndResults() : void{
-    console.log("Import sample&Results called");
+
+    this.postParseActions = (result: Array<any>) => {
+
+      console.log('Result', result);
+
+      for(const resultItem of result){
+        SampleDataContainer.addFromCSV({
+          age: resultItem.age,
+          sex: resultItem.sex,
+          creatinine: resultItem.creatinine,
+          LYVE1: resultItem.LYVE1,
+          REG1B: resultItem.REG1B,
+          TFF1: resultItem.TFF1,
+          REG1A: resultItem.REG1A}
+        );
+
+      }
+
+      this.ImportFile('.csv');
+    };
+
     this.ImportFile('.csv');
 
     //needs to wait for imported file
 
 
   }
-
-
 
 }

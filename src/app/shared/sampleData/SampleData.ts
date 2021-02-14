@@ -1,11 +1,11 @@
 import { DiagnosisText, DiagnosisArray } from './DiagnosisText';
 import { Gender, GenderList } from './Gender';
+import { Observable } from 'rxjs';
 
 export class SampleData {
 
-  readonly id: number;
-
   public constructor(
+    readonly id : number,
     readonly age: number,
     readonly sex: Gender,
     readonly creatinine: number,
@@ -15,10 +15,7 @@ export class SampleData {
     readonly REG1A: number,
     readonly diagnosis: number,
     readonly precision: number
-  ) {
-
-    this.id = samples.length;
-  }
+  ) {}
 
   public getDiagnosisText(): DiagnosisText {
 
@@ -30,42 +27,67 @@ export class SampleData {
 
   }
 
-  public static ParseJSON(JSONObject: any): SampleData {
+}
 
-    const values = JSONObject.Results.output1[0];
+export class SampleDataContainer{
+
+  static readonly samples : SampleData[] = [];
+
+  static addSample(data: {
+    age: number,
+    sex: string,
+    creatinine: number,
+    LYVE1: number,
+    REG1B: number,
+    TFF1: number,
+    REG1A: number,
+    diagnosis: number,
+    precision: number
+  }) : SampleData {
 
     let correctGender : Gender;
 
     for(const gender of GenderList){
 
-      if(gender.exportName == values.sex)
+      if(gender.exportName == data.sex)
         correctGender = gender;
 
     }
 
-    console.log(values.age,
-                correctGender,
-                values.creatinine,
-                values.LYVE1,
-                values.REG1B,
-                values.TFF1,
-                values.REG1A,
-                values["Scored Labels"],
-                values["Scored Probabilities"]);
-
-
-    return new SampleData(
-      values.age,
-      values.sex,
-      values.creatinine,
-      values.LYVE1,
-      values.REG1B,
-      values.TFF1,
-      values.REG1A,
-      values["Scored Labels"],
-      values["Scored Probabilities"]);
+    const newSample = new SampleData(
+      SampleDataContainer.samples.length,
+      data.age,
+      correctGender,
+      data.creatinine,
+      data.LYVE1,
+      data.REG1B,
+      data.TFF1,
+      data.REG1A,
+      data.diagnosis,
+      data.precision
+    );
+    SampleDataContainer.samples.push(newSample);
+    return newSample;
   }
 
-}
+  static addFromJSON(jsonObject : any) : SampleData{
+    const newSample = SampleDataContainer.addSample(jsonObject.Results.output1[0]);
+    return newSample;
+  }
 
-export const samples: SampleData[] = [];
+  static addFromCSV(csvObject : any) : SampleData{
+    throw "Not yet implemented";
+    const newSample = SampleDataContainer.addSample(csvObject);
+  }
+
+  static addFromRequest(sampleDataRequest : Observable<SampleData>) : void{
+    sampleDataRequest.subscribe({
+      next: (value) => {
+
+        const jsonObject: any = JSON.parse(JSON.stringify(value));
+        SampleDataContainer.addFromJSON(jsonObject);
+
+      }
+    });
+  }
+}

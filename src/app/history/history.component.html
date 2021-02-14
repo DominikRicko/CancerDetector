@@ -10,7 +10,7 @@
     <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamples()">Import samples</button>
   </ng-template>
 
-  <input #fileInput type="file" style="display:none" (change)="this.fileChangeListener($event)">
+  <input #fileInput type="file" style="display:none" (change)="this.fileChangeListener($event.srcElement.files)">
 
   <kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}" [class]="{'text-center': true}"
     [columnMenu]="false" showSelectAll="true"></kendo-grid-checkbox-column>
