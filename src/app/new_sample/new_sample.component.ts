@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { SampleData, SampleDataContainer } from '../shared/sampleData/SampleData';
+import { SampleDataContainer } from '../shared/sampleData/SampleData';
 import { AnalysisRequester } from '../shared/analysisRequester/analysisRequester.service';
 import { Gender, GenderList} from '../shared/sampleData/Gender';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +14,10 @@ export class NewSampleComponent implements OnInit {
   public sampleForm: FormGroup;
   readonly genderList : Array<Gender>;
 
-  constructor(
-    private analysisRequester : AnalysisRequester,
-    private router : Router) {
+  public diagnosis = "None";
+  public precision = 0;
 
+  constructor(private analysisRequester : AnalysisRequester) {
     this.sampleForm = new FormGroup({
       age : new FormControl(),
       sex : new FormControl(),
@@ -47,36 +46,28 @@ export class NewSampleComponent implements OnInit {
 
     if( this.areFormFieldsNotEmpty() ){
 
-      // SampleDataContainer.addFromRequest(this.analysisRequester.PostRequest(
-      //   this.sampleForm.get('age').value,
-      //   (this.sampleForm.get('sex').value as Gender).exportName,
-      //   this.sampleForm.get('creatinine').value,
-      //   this.sampleForm.get('lyve1').value,
-      //   this.sampleForm.get('reg1b').value,
-      //   this.sampleForm.get('tff1').value,
-      //   this.sampleForm.get('reg1a').value
-      // ));
+      const analysisObserver = this.analysisRequester.PostRequest(
+        this.sampleForm.get('age').value,
+        (this.sampleForm.get('sex').value as Gender).exportName,
+        this.sampleForm.get('creatinine').value,
+        this.sampleForm.get('lyve1').value,
+        this.sampleForm.get('reg1b').value,
+        this.sampleForm.get('tff1').value,
+        this.sampleForm.get('reg1a').value
+      );
 
-      console.error('Generated a sample sample to workaround CORS policy while Node.js server in background.');
+      analysisObserver.subscribe(() => {
 
-      this.EventOccured(
-        SampleDataContainer.addSample({
-          age : 23,
-          sex: 'M',
-          creatinine: 0.15,
-          LYVE1 : 0.15,
-          REG1B : 0.15,
-          TFF1: 0.15,
-          REG1A: 0.15,
-          diagnosis: 2,
-          precision : 0.15}));
+        const sampleData = SampleDataContainer.samples[SampleDataContainer.samples.length - 1];
+
+        this.diagnosis = sampleData.diagnosis.displayName;
+        this.precision = sampleData.precision;
+
+      });
+      SampleDataContainer.addFromRequest(analysisObserver);
 
     }
 
-  }
-
-  public EventOccured(sample : SampleData) : void{
-    this.router.navigateByUrl('/result', { state: { sample: sample } });
   }
 
   ngOnInit(): void { }

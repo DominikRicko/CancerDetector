@@ -68,6 +68,8 @@ export class SampleDataContainer{
 
     }
 
+    console.log(data);
+
     const newSample = new SampleData(
       SampleDataContainer.samples.length,
       data.age,
@@ -84,21 +86,16 @@ export class SampleDataContainer{
     return newSample;
   }
 
-  static addFromJSON(jsonObject : any) : SampleData{
-    const newSample = SampleDataContainer.addSample(jsonObject.Results.output1[0]);
-    return newSample;
-  }
-
-  static addFromCSV(csvObject : any) : SampleData{
-    return SampleDataContainer.addSample(csvObject);
-  }
-
   static addFromRequest(sampleDataRequest : Observable<SampleData>) : void{
     sampleDataRequest.subscribe({
       next: (value) => {
+        let jsonObject: any = JSON.parse(JSON.stringify(value));
+        jsonObject = jsonObject.Results.output1[0];
 
-        const jsonObject: any = JSON.parse(JSON.stringify(value));
-        SampleDataContainer.addFromJSON(jsonObject);
+        jsonObject.diagnosis = parseInt(jsonObject["Scored Labels"]);
+        jsonObject.precision = jsonObject["Scored Probabilities"];
+
+        SampleDataContainer.addSample(jsonObject);
 
       }
     });

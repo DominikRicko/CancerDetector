@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SampleData } from '../shared/sampleData/SampleData';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -9,16 +7,13 @@ import { Router } from '@angular/router';
 })
 export class ResultComponent implements OnInit {
 
-  @Input() sampleData : SampleData;
+  @Input() diagnosis : string;
+  @Input() precision : number;
 
-  constructor(
-    private router : Router
-  ) {
-    this.sampleData = (this.router.getCurrentNavigation().extras.state.sample as SampleData);
+  constructor() {
   }
 
   ngOnInit() : void {
-    this.sampleData = history.state.sample;
   }
 
 }

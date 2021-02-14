@@ -5,7 +5,6 @@ import { PageNotFoundComponent } from './shared/components';
 import { NewSampleRoutingModule } from './new_sample/new_sample-routing.module';
 import { StatisticsRoutingModule } from './statistics/statistics-routing.module';
 import { HistoryRoutingModule } from './history/history-routing.module';
-import { ResultRoutingModule } from './result/result-routing.module';
 
 const routes: Routes = [
   {
@@ -24,8 +23,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     NewSampleRoutingModule,
     StatisticsRoutingModule,
-    HistoryRoutingModule,
-    ResultRoutingModule
+    HistoryRoutingModule
   ],
   exports: [RouterModule]
 })

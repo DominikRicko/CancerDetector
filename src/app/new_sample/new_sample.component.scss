@@ -6,3 +6,16 @@ button{
   margin-left: 25px;
   margin-top: 25px;
 }
+
+#mainContainer{
+  display:flex;
+  flex-direction: row;
+}
+
+#formContainer{
+  flex:left;
+}
+
+#resultContainer{
+  flex:right;
+}

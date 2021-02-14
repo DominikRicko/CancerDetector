@@ -82,7 +82,7 @@ export class HistoryComponent implements OnInit{
     this.postParseActions = (result: Array<any>) => {
 
       for(const resultItem of result){
-        SampleDataContainer.addFromCSV({
+        SampleDataContainer.addSample({
           age: parseInt(resultItem.age),
           sex: resultItem.sex,
           creatinine: parseFloat(resultItem.creatinine),
@@ -90,7 +90,7 @@ export class HistoryComponent implements OnInit{
           REG1B: parseFloat(resultItem.REG1B),
           TFF1: parseFloat(resultItem.TFF1),
           REG1A: parseFloat(resultItem.REG1A),
-          diagnosis: parseInt(resultItem.diagnosis),
+          diagnosis: resultItem.diagnosis,
           precision: parseFloat(resultItem.precision)}
         );
 
