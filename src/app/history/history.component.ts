@@ -126,8 +126,19 @@ export class HistoryComponent implements OnInit{
     csvExporter.generateCsv(jsonArray);
   }
 
-  public RequestCSVExport() : void{
+  public DeleteSelected() : void{
 
+    for(const selectedIdStringed of this.mySelection){
+      const selectedId = parseInt(selectedIdStringed);
+
+      for(let arrayIndex = 0; arrayIndex < SampleDataContainer.samples.length; arrayIndex++){
+
+        if(SampleDataContainer.samples[arrayIndex].id == selectedId){
+          SampleDataContainer.samples.splice(arrayIndex, 1);
+          arrayIndex--;
+        }
+      }
+    }
   }
 
 }
