@@ -1,4 +1,4 @@
-import { DiagnosisText, DiagnosisArray } from './DiagnosisText';
+import { DiagnosisArray, DiagnosisText } from './DiagnosisText';
 import { Gender, GenderList } from './Gender';
 import { Observable } from 'rxjs';
 
@@ -13,17 +13,22 @@ export class SampleData {
     readonly REG1B: number,
     readonly TFF1: number,
     readonly REG1A: number,
-    readonly diagnosis: number,
+    readonly diagnosis: DiagnosisText,
     readonly precision: number
   ) {}
 
-  public getDiagnosisText(): DiagnosisText {
-
-    for (const diagnosisText of DiagnosisArray) {
-      if (diagnosisText.exportName == this.diagnosis.toString()) return diagnosisText;
-    }
-
-    return null;
+  public export2Json(): any{
+    return {
+      age: this.age,
+      sex: this.sex.exportName,
+      creatinine: this.creatinine,
+      LYVE1: this.LYVE1,
+      REG1B: this.REG1B,
+      TFF1: this.TFF1,
+      REG1A: this.REG1A,
+      diagnosis: this.diagnosis.exportId,
+      precision: this.precision
+    };
 
   }
 
@@ -54,6 +59,15 @@ export class SampleDataContainer{
 
     }
 
+    let correctDiagnosis : DiagnosisText;
+
+    for(const diagnosis of DiagnosisArray){
+
+      if(diagnosis.exportId == data.diagnosis)
+        correctDiagnosis = diagnosis;
+
+    }
+
     const newSample = new SampleData(
       SampleDataContainer.samples.length,
       data.age,
@@ -63,7 +77,7 @@ export class SampleDataContainer{
       data.REG1B,
       data.TFF1,
       data.REG1A,
-      data.diagnosis,
+      correctDiagnosis,
       data.precision
     );
     SampleDataContainer.samples.push(newSample);
@@ -76,8 +90,7 @@ export class SampleDataContainer{
   }
 
   static addFromCSV(csvObject : any) : SampleData{
-    throw "Not yet implemented";
-    const newSample = SampleDataContainer.addSample(csvObject);
+    return SampleDataContainer.addSample(csvObject);
   }
 
   static addFromRequest(sampleDataRequest : Observable<SampleData>) : void{

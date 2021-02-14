@@ -68,6 +68,7 @@
     "@progress/kendo-licensing": "^1.0.2",
     "@progress/kendo-svg-icons": "^0.1.2",
     "@progress/kendo-theme-default": "4.32.0",
+    "export-to-csv": "0.2.1",
     "express": "4.17.1",
     "hammerjs": "2.0.8",
     "ngx-csv-parser": "0.0.6"

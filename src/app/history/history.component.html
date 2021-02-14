@@ -1,11 +1,11 @@
-<kendo-grid [kendoGridBinding]="gridView" kendoGridSelectBy="id" [selectedKeys]="mySelection" [pageSize]="20"
+<kendo-grid [kendoGridBinding]="gridData" kendoGridSelectBy="id" [selectedKeys]="mySelection" [pageSize]="20"
   [pageable]="true" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" style.height="80vh"
   [columnMenu]="{ filter: true }">
 
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridExcelCommand icon="file-excel" style="float:right;">Export to Excel</button>
     <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
-    <button kendoButton icon="file-csv" style="float:right;">Export to CSV</button>
+    <button kendoButton icon="file-csv" style="float:right;" (click)="this.ExportData()">Export to CSV</button>
     <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamplesAndResults()">Import samples & results</button>
     <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamples()">Import samples</button>
   </ng-template>
@@ -71,7 +71,7 @@
 
     <kendo-grid-column field="precision" title="Precision" [width]="130" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.precision }}</div>
+        <div>{{ dataItem.precision*100 }}%</div>
       </ng-template>
     </kendo-grid-column>
 

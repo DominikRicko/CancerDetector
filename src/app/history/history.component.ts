@@ -6,6 +6,7 @@ import { SampleDataContainer} from '../shared/sampleData/SampleData';
 import { AnalysisRequester } from '../shared/analysisRequester/analysisRequester.service';
 
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-history',
@@ -15,17 +16,15 @@ import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
 export class HistoryComponent implements OnInit{
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   public gridData: any[] = SampleDataContainer.samples;
-  public gridView: any[];
-
   public mySelection: string[] = [];
 
   public constructor(private ngxCsvParser: NgxCsvParser, private analysisRequester : AnalysisRequester){
-    SampleDataContainer.addSample({age: 12, sex:'M', creatinine: 0.15, LYVE1: 1, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 1, precision: 0.12});
+    SampleDataContainer.addSample({age: 12, sex:'M', creatinine: 0.15, LYVE1: 1, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 3, precision: 0.12});
     SampleDataContainer.addSample({age: 21, sex:'M', creatinine: 0.10, LYVE1: 4, REG1B: 1, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.25});
-    SampleDataContainer.addSample({age: 33, sex:'M', creatinine: 0.10, LYVE1: 2, REG1B: 2, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.132});
+    SampleDataContainer.addSample({age: 33, sex:'M', creatinine: 0.10, LYVE1: 2, REG1B: 2, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.13});
     SampleDataContainer.addSample({age: 17, sex:'F', creatinine: 0.13, LYVE1: 1, REG1B: 1, TFF1: 3, REG1A: 4, diagnosis: 2, precision: 0.34});
-    SampleDataContainer.addSample({age: 50, sex:'F', creatinine: 0.12, LYVE1: 3, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 1, precision: 0.12});
-    SampleDataContainer.addSample({age: 56, sex:'M', creatinine: 0.11, LYVE1: 5, REG1B: 2, TFF1: 4, REG1A: 1, diagnosis: 1, precision: 0.50});
+    SampleDataContainer.addSample({age: 50, sex:'F', creatinine: 0.12, LYVE1: 3, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 3, precision: 0.12});
+    SampleDataContainer.addSample({age: 56, sex:'M', creatinine: 0.11, LYVE1: 5, REG1B: 2, TFF1: 4, REG1A: 1, diagnosis: 3, precision: 0.50});
   }
 
   @ViewChild('fileInput', { static: false }) fileImportInput;
@@ -48,7 +47,6 @@ export class HistoryComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    this.gridView = this.gridData;
   }
 
   public ImportFile(inputType : string) : void{
@@ -74,37 +72,61 @@ export class HistoryComponent implements OnInit{
           resultItem.REG1A));
 
       }
-
-      this.ImportFile('.csv');
     };
+
+    this.ImportFile('.csv');
   }
 
   public ImportSamplesAndResults() : void{
 
     this.postParseActions = (result: Array<any>) => {
 
-      console.log('Result', result);
-
       for(const resultItem of result){
         SampleDataContainer.addFromCSV({
-          age: resultItem.age,
+          age: parseInt(resultItem.age),
           sex: resultItem.sex,
-          creatinine: resultItem.creatinine,
-          LYVE1: resultItem.LYVE1,
-          REG1B: resultItem.REG1B,
-          TFF1: resultItem.TFF1,
-          REG1A: resultItem.REG1A}
+          creatinine: parseFloat(resultItem.creatinine),
+          LYVE1: parseFloat(resultItem.LYVE1),
+          REG1B: parseFloat(resultItem.REG1B),
+          TFF1: parseFloat(resultItem.TFF1),
+          REG1A: parseFloat(resultItem.REG1A),
+          diagnosis: parseInt(resultItem.diagnosis),
+          precision: parseFloat(resultItem.precision)}
         );
 
       }
 
-      this.ImportFile('.csv');
+      console.log(SampleDataContainer.samples);
+
     };
 
     this.ImportFile('.csv');
 
-    //needs to wait for imported file
+  }
 
+  public ExportData() : void{
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true,
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+    const csvExporter = new ExportToCsv(options);
+
+    const jsonArray : any[] = [];
+
+    for(const sample of SampleDataContainer.samples){
+      jsonArray.push(sample.export2Json());
+    }
+
+    csvExporter.generateCsv(jsonArray);
+  }
+
+  public RequestCSVExport() : void{
 
   }
 

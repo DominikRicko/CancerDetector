@@ -36,7 +36,9 @@
   },
   "DATA":{
     "MALE":"Male",
-    "FEMALE":"Female"
+    "FEMALE":"Female",
+    "PANCREATIC_CANCER":"Pancreatic cancer",
+    "NOT_PANCREATIC_CANCER":"Non-cancerous condition of the pancreas"
   }
 
 }
