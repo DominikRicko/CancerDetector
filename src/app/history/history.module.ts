@@ -9,6 +9,9 @@ import { SharedModule } from '../shared/shared.module';
 import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ChartsModule } from '@progress/kendo-angular-charts';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
+import { NgxCsvParserModule } from 'ngx-csv-parser';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
     PDFModule,
     ExcelModule,
     InputsModule,
-    ChartsModule
+    ButtonsModule,
+    ChartsModule,
+    NgxCsvParserModule
   ]
 })
 export class HistoryModule { }

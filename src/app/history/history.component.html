@@ -3,10 +3,14 @@
   [columnMenu]="{ filter: true }">
 
   <ng-template kendoGridToolbarTemplate>
-    <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
-    <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to Excel</button>
+    <button kendoGridExcelCommand icon="file-excel" style="float:right;">Export to Excel</button>
     <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+    <button kendoButton icon="file-csv" style="float:right;">Export to CSV</button>
+    <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamplesAndResults()">Import samples & results</button>
+    <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamples()">Import samples</button>
   </ng-template>
+
+  <input #fileInput type="file" style="display:none" (change)="this.fileChangeListener($event)">
 
   <kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}" [class]="{'text-center': true}"
     [columnMenu]="false" showSelectAll="true"></kendo-grid-checkbox-column>
@@ -25,9 +29,9 @@
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="creatine" title="Creatine level" [width]="130" [class]="{'text-center': true}">
+    <kendo-grid-column field="creatinine" title="Creatinine level" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <div>{{ dataItem.creatine }}</div>
+        <div>{{ dataItem.creatinine }}</div>
       </ng-template>
     </kendo-grid-column>
 

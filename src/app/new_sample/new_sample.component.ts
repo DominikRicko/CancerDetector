@@ -60,6 +60,7 @@ export class NewSampleComponent implements OnInit {
       );
       */
       console.log('RandomlyGeneratedBullshitSample');
+
       this.EventOccured(new SampleData(23, Male, 0.15, 0.15, 0.15, 0.15, 0.15, 2, 0.15));
 
     }

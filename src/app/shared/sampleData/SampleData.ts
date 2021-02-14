@@ -3,6 +3,8 @@ import { Gender, GenderList } from './Gender';
 
 export class SampleData {
 
+  readonly id: number;
+
   public constructor(
     readonly age: number,
     readonly sex: Gender,
@@ -14,6 +16,8 @@ export class SampleData {
     readonly diagnosis: number,
     readonly precision: number
   ) {
+
+    this.id = samples.length;
   }
 
   public getDiagnosisText(): DiagnosisText {
