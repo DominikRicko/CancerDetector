@@ -5,10 +5,12 @@
 }
 
 kendo-label, kendoArcGaugeCenterTemplate, kendo-arcgauge{
-  font-size:larger;
+  font-size:x-large;
+  margin:auto;
 }
 
 kendo-arcgauge{
+  padding-top:25px;
   width:100%;
   height:100%;
 }
@@ -18,5 +20,4 @@ kendo-arcgauge{
   height:90%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }

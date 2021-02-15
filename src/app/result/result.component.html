@@ -1,4 +1,5 @@
 <div id="results">
+  <kendo-label text="Prediction precision"></kendo-label>
   <kendo-arcgauge [value]="this.precision" [scale]="{ max: 1 }" [resizeRateLimit]="2">
     <ng-template kendoArcGaugeCenterTemplate let-value="value">
       {{ value*100 }}%
