@@ -3,7 +3,7 @@
   <kendo-appbar-section>
     This app is using the following:
     <ul id="versions">
-      <ng-template *ngIf="this.electronService.isElectron">
+      <ng-template [ngIf]="this.electronService.isElectron">
         <li>Chromium {{this.chromeVersion }}</li>
         <li>Node.js {{this.nodeVersion}}</li>
         <li>Electron {{ this.electronVersion }}</li>
