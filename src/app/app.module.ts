@@ -31,6 +31,7 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
 import { FooterComponent } from './footer/footer.component';
 
+import 'hammerjs';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
