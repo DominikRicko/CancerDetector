@@ -68,8 +68,6 @@ export class SampleDataContainer{
 
     }
 
-    console.log(data);
-
     const newSample = new SampleData(
       SampleDataContainer.samples.length,
       data.age,
