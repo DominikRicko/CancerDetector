@@ -3,14 +3,14 @@
     <form [formGroup]="sampleForm">
       <kendo-formfield>
         <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.AGE' | translate}}">
-          <kendo-numerictextbox formControlName="age"></kendo-numerictextbox>
+          <kendo-numerictextbox formControlName="age" [format]="format" [min]="minValue"></kendo-numerictextbox>
         </kendo-floatinglabel>
         <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.AGE' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
         <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.SEX' | translate}}">
-          <kendo-dropdownlist [data]="this.genderList" formControlName="sex">
+          <kendo-dropdownlist [data]="this.genderList" textField="displayName" valueField="exportName" formControlName="sex">
           </kendo-dropdownlist>
         </kendo-floatinglabel>
         <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.SEX' | translate}}</kendo-formerror>

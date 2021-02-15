@@ -1,0 +1,22 @@
+:host{
+  width: 100%;
+  height: 100%;
+  margin:15px
+}
+
+kendo-label, kendoArcGaugeCenterTemplate, kendo-arcgauge{
+  font-size:larger;
+}
+
+kendo-arcgauge{
+  width:100%;
+  height:100%;
+}
+
+#results{
+  width:100%;
+  height:90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

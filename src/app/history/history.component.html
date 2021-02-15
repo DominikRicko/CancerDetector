@@ -1,6 +1,6 @@
 <kendo-grid [kendoGridBinding]="gridData" kendoGridSelectBy="id" [selectedKeys]="mySelection" [pageSize]="20"
   [pageable]="true" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" style.height="80vh"
-  [columnMenu]="{ filter: true }">
+  [columnMenu]="{ filter: true }" (dataStateChange)="refreshGrid()">
 
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridExcelCommand icon="file-excel" style="float:right;">Export to Excel</button>

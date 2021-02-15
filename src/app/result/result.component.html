@@ -1,7 +1,9 @@
-<kendo-arcgauge [value]="this.precision" [scale]="{ max: 1 }">
-  <ng-template kendoArcGaugeCenterTemplate let-value="value">
+<div id="results">
+  <kendo-arcgauge [value]="this.precision" [scale]="{ max: 1 }" [resizeRateLimit]="2">
+    <ng-template kendoArcGaugeCenterTemplate let-value="value">
       {{ value*100 }}%
-  </ng-template>
-</kendo-arcgauge>
+    </ng-template>
+  </kendo-arcgauge>
 
-<kendo-label [text]="this.diagnosis"></kendo-label>
+  <kendo-label text="Diagnosis: It's {{this.diagnosis | translate}} "></kendo-label>
+</div>

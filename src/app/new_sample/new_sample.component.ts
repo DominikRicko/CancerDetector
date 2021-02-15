@@ -14,8 +14,11 @@ export class NewSampleComponent implements OnInit {
   public sampleForm: FormGroup;
   readonly genderList : Array<Gender>;
 
-  public diagnosis = "None";
+  public diagnosis = "Nothing";
   public precision = 0;
+
+  readonly minValue = 0;
+  readonly format = 'n0';
 
   constructor(private analysisRequester : AnalysisRequester) {
     this.sampleForm = new FormGroup({

@@ -15,16 +15,14 @@ import { ExportToCsv } from 'export-to-csv';
 })
 export class HistoryComponent implements OnInit{
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
-  public gridData: any[] = SampleDataContainer.samples;
+  public gridData = SampleDataContainer.samples;
   public mySelection: string[] = [];
 
-  public constructor(private ngxCsvParser: NgxCsvParser, private analysisRequester : AnalysisRequester){
-    SampleDataContainer.addSample({age: 12, sex:'M', creatinine: 0.15, LYVE1: 1, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 3, precision: 0.12});
-    SampleDataContainer.addSample({age: 21, sex:'M', creatinine: 0.10, LYVE1: 4, REG1B: 1, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.25});
-    SampleDataContainer.addSample({age: 33, sex:'M', creatinine: 0.10, LYVE1: 2, REG1B: 2, TFF1: 3, REG1A: 2, diagnosis: 2, precision: 0.13});
-    SampleDataContainer.addSample({age: 17, sex:'F', creatinine: 0.13, LYVE1: 1, REG1B: 1, TFF1: 3, REG1A: 4, diagnosis: 2, precision: 0.34});
-    SampleDataContainer.addSample({age: 50, sex:'F', creatinine: 0.12, LYVE1: 3, REG1B: 2, TFF1: 1, REG1A: 4, diagnosis: 3, precision: 0.12});
-    SampleDataContainer.addSample({age: 56, sex:'M', creatinine: 0.11, LYVE1: 5, REG1B: 2, TFF1: 4, REG1A: 1, diagnosis: 3, precision: 0.50});
+  public constructor(private ngxCsvParser: NgxCsvParser, private analysisRequester : AnalysisRequester){}
+
+  public refreshGrid() : void{
+    this.gridData = SampleDataContainer.samples;
+    console.log("Grid refreshed");
   }
 
   @ViewChild('fileInput', { static: false }) fileImportInput;
@@ -58,8 +56,6 @@ export class HistoryComponent implements OnInit{
   public ImportSamples(): void{
 
     this.postParseActions = (result: Array<any>) => {
-
-      console.log('Result', result);
 
       for(const resultItem of result){
         SampleDataContainer.addFromRequest(this.analysisRequester.PostRequest(
@@ -96,7 +92,7 @@ export class HistoryComponent implements OnInit{
 
       }
 
-      console.log(SampleDataContainer.samples);
+      this.gridData = SampleDataContainer.samples;
 
     };
 
@@ -113,7 +109,6 @@ export class HistoryComponent implements OnInit{
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
-      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     const csvExporter = new ExportToCsv(options);
 
@@ -127,6 +122,8 @@ export class HistoryComponent implements OnInit{
   }
 
   public DeleteSelected() : void{
+
+    this.gridData.splice(1,1);
 
     for(const selectedIdStringed of this.mySelection){
       const selectedId = parseInt(selectedIdStringed);

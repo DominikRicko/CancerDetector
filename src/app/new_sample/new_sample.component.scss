@@ -7,6 +7,10 @@ button{
   margin-top: 25px;
 }
 
+kendo-floatinglabel, kendo-numerictextbox, kendo-dropdownlist, .k-floating-label-container{
+  font-size: larger;
+}
+
 #mainContainer{
   display:flex;
   flex-direction: row;
@@ -14,8 +18,21 @@ button{
 
 #formContainer{
   flex:left;
+  margin-right: 30px;
 }
 
 #resultContainer{
   flex:right;
+  margin: auto;
+}
+
+#resultContainer,app-result, #mainContainer{
+  width:100%;
+  height:100%;
+  display:flex;
+}
+
+button{
+  width: 100%;
+  font-size: larger;
 }
