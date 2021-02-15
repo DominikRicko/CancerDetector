@@ -29,6 +29,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
+import { FooterComponent } from './footer/footer.component';
 
 
 // AoT requires an exported function for factories
@@ -37,7 +38,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [			AppComponent, AppbarComponent],
+  declarations: [			AppComponent, AppbarComponent, FooterComponent],
   imports: [
     BrowserModule,
     FormsModule,

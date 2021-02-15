@@ -1,0 +1,18 @@
+<kendo-appbar [position]="'bottom'">
+
+  <kendo-appbar-section>
+    This app is using the following:
+    <ul id="versions">
+      <ng-template [ngIf]="this.webApp">
+        <li> Chromium {{this.chromeVersion }}</li>
+        <li> Node.js {{this.nodeVersion}}</li>
+        <li *ngIf="this.electronService.isElectron">Electron {{ this.electronVersion }}</li>
+      </ng-template>
+      <li> Angular {{this.angularVersion}}</li>
+    </ul>
+  </kendo-appbar-section>
+  <kendo-appbar-spacer></kendo-appbar-spacer>
+  <kendo-appbar-section id="authors" >
+    App developed by Petra Radočaj and Dominik Ričko.
+  </kendo-appbar-section>
+</kendo-appbar>
