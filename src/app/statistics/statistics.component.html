@@ -1,15 +1,54 @@
-<kendo-chart [style.height.px]="200" [transitions]="false">
-  <kendo-chart-series>
-    <kendo-chart-series-item
-      [autoFit]="true"
-        type="pie" [data]="data"
-        categoryField="kind" field="share">
-      <kendo-chart-series-item-labels
-        position="outsideEnd"
-        color="#000"
-        [content]="labelContent">
-      </kendo-chart-series-item-labels>
-    </kendo-chart-series-item>
-  </kendo-chart-series>
-  <kendo-chart-legend [visible]="false"></kendo-chart-legend>
-</kendo-chart>
+<kendo-tilelayout [columns]="2" [rowHeight]="20" [resizable]="false">
+  <kendo-label text="Sample count: {{sampleCount}}"></kendo-label>
+  <kendo-label text="Average prediction precision: {{ averagePrecision*100}}%"></kendo-label>
+</kendo-tilelayout>
+
+<kendo-tilelayout [columns]="2" [rowHeight]="255" [resizable]="true" [reorderable]="true">
+  <kendo-tilelayout-item title="Patient age" [col]="1">
+      <kendo-tilelayout-item-body>
+        <app-line-chart [data]="this.ageChartData"></app-line-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="Patient gender" [col]="2">
+      <kendo-tilelayout-item-body>
+        <app-pie-chart [data]="this.genderChartData"></app-pie-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="Creatinine level" [col]="1">
+      <kendo-tilelayout-item-body>
+        <app-line-chart [data]="this.creatinineChartData"></app-line-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="LYVE1 protein amount" [col]="2">
+      <kendo-tilelayout-item-body>
+        <app-line-chart [data]="this.lyve1ChartData"></app-line-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="REG1B protein amount" [col]="1">
+      <kendo-tilelayout-item-body>
+        <app-line-chart [data]="this.reg1bChartData"></app-line-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="TFF1 protein amount" [col]="2">
+      <kendo-tilelayout-item-body>
+        <app-line-chart [data]="this.tff1ChartData"></app-line-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="REG1A protein amount" [col]="1">
+      <kendo-tilelayout-item-body>
+        <app-line-chart [data]="this.reg1aChartData"></app-line-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+
+  <kendo-tilelayout-item title="Diagnosis" [col]="2">
+      <kendo-tilelayout-item-body>
+        <app-pie-chart [data]="this.diagnosisChartData"></app-pie-chart>
+      </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+</kendo-tilelayout>
