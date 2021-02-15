@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppConfig } from '../../environments/environment';
 import { ElectronService } from '../core/services/electron/electron.service';
 
 @Component({
@@ -13,20 +12,11 @@ export class FooterComponent implements OnInit {
   readonly electronVersion: string;
   readonly chromeVersion: string;
   readonly angularVersion: string;
-  readonly webApp : boolean;
 
   constructor(readonly electronService: ElectronService) {
 
-    this.webApp = AppConfig.environment != 'WEB';
-
-    if(this.webApp){
-      if (electronService.isElectron) {
-        this.electronVersion = process.versions.electron;
-      }
-      else {
-        this.electronVersion = null;
-      }
-
+    if(this.electronService.isElectron){
+      this.electronVersion = process.versions.electron;
       this.nodeVersion = process.versions.node;
       this.chromeVersion = process.versions.chrome;
     }
