@@ -51,8 +51,6 @@ export class SampleDataContainer{
     precision: number
   }) : SampleData {
 
-    console.log(data);
-
     let correctGender : Gender;
 
     for(const gender of GenderList){
@@ -85,8 +83,6 @@ export class SampleDataContainer{
     );
     SampleDataContainer.samples.push(newSample);
 
-    console.log('Inside sample' + newSample.toString());
-
     return newSample;
   }
 
@@ -98,11 +94,14 @@ export class SampleDataContainer{
         let jsonObject: any = JSON.parse(JSON.stringify(value));
         jsonObject = jsonObject.Results.output1[0];
 
+        jsonObject.age = parseInt(jsonObject.age);
+        jsonObject.creatinine = parseFloat(jsonObject.creatinine);
+        jsonObject.LYVE1 = parseFloat(jsonObject.LYVE1);
+        jsonObject.TFF1 = parseFloat(jsonObject.TFF1);
+        jsonObject.REG1B = parseFloat(jsonObject.REG1B);
+        jsonObject.REG1A = parseFloat(jsonObject.REG1A);
         jsonObject.diagnosis = parseInt(jsonObject["Scored Labels"]);
-        jsonObject.precision = jsonObject["Scored Probabilities"];
-
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        console.log('Inside JSONrequest: ' + jsonObject.toString());
+        jsonObject.precision = parseFloat(jsonObject["Scored Probabilities"]);
 
         observable.next(SampleDataContainer.addSample(jsonObject));
         observable.complete();

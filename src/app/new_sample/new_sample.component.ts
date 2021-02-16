@@ -61,8 +61,6 @@ export class NewSampleComponent implements OnInit {
 
       const sampleDataObservable = SampleDataContainer.addFromRequest(analysisObserver);
       sampleDataObservable.subscribe((sampleData) => {
-        console.log(sampleData);
-
         this.diagnosis = sampleData.diagnosis.displayName;
         this.precision = sampleData.precision;
       });
