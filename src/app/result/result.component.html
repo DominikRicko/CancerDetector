@@ -2,9 +2,9 @@
   <kendo-label text="Prediction precision"></kendo-label>
   <kendo-arcgauge [value]="this.precision" [scale]="{ max: 1 }" [resizeRateLimit]="2">
     <ng-template kendoArcGaugeCenterTemplate let-value="value">
-      {{ value*100 }}%
+      {{ (value*100).toFixed(2) }}%
     </ng-template>
   </kendo-arcgauge>
 
-  <kendo-label text="Diagnosis: It's {{this.diagnosis | translate}} "></kendo-label>
+  <kendo-label text="Diagnosis: It's {{this.diagnosis.displayName | translate}} "></kendo-label>
 </div>
