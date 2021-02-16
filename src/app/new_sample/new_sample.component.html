@@ -2,55 +2,47 @@
   <div id="formContainer">
     <form [formGroup]="sampleForm">
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.AGE' | translate}}">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.AGE' | translate}}">
           <kendo-numerictextbox formControlName="age" [format]="format" [min]="minValue"></kendo-numerictextbox>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.AGE' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.SEX' | translate}}">
-          <kendo-dropdownlist [data]="this.genderList" textField="displayName" valueField="exportName" formControlName="sex">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.SEX' | translate}}">
+          <kendo-dropdownlist [data]="this.genderList" textField="{{displayName | translate}}" valueField="exportName" formControlName="sex">
           </kendo-dropdownlist>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.SEX' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.CREATININE_LEVEL' | translate}}">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.CREATININE_LEVEL' | translate}}">
           <kendo-numerictextbox formControlName="creatinine"></kendo-numerictextbox>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.CREATININE_LEVEL' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.LYVE1_AMOUNT' | translate}}">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.LYVE1_AMOUNT' | translate}}">
           <kendo-numerictextbox formControlName="lyve1"></kendo-numerictextbox>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.LYVE1_AMOUNT' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.REG1B_AMOUNT' | translate}}">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.REG1B_AMOUNT' | translate}}">
           <kendo-numerictextbox formControlName="reg1b"></kendo-numerictextbox>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.REG1B_AMOUNT' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.TFF1_AMOUNT' | translate}}">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.TFF1_AMOUNT' | translate}}">
           <kendo-numerictextbox formControlName="tff1"></kendo-numerictextbox>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.TFF1_AMOUNT' | translate}}</kendo-formerror>
       </kendo-formfield>
 
       <kendo-formfield>
-        <kendo-floatinglabel text="{{'TABS.NEW_SAMPLE.SAMPLEDATA.REG1A_AMOUNT' | translate}}">
+        <kendo-floatinglabel text="{{'DATA.SAMPLEDATA.REG1A_AMOUNT' | translate}}">
           <kendo-numerictextbox formControlName="reg1a"></kendo-numerictextbox>
         </kendo-floatinglabel>
-        <kendo-formerror>{{'TABS.NEW_SAMPLE.ERROR.REG1A_AMOUNT' | translate}}</kendo-formerror>
       </kendo-formfield>
-
     </form>
 
     <button kendoButton (click)="sendAnalysisRequest()">

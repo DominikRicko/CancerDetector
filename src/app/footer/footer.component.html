@@ -1,7 +1,7 @@
 <kendo-appbar [position]="'bottom'">
 
   <kendo-appbar-section>
-    This app is using the following:
+    {{'LABELS.USED_TECHNOLOGIES' | translate}}
     <ul id="versions">
       <ng-template [ngIf]="this.electronService.isElectron">
         <li>Chromium {{this.chromeVersion }}</li>
@@ -13,6 +13,6 @@
   </kendo-appbar-section>
   <kendo-appbar-spacer></kendo-appbar-spacer>
   <kendo-appbar-section id="authors" >
-    App developed by Petra Radočaj and Dominik Ričko.
+    {{'LABELS.AUTHORS' | translate}}
   </kendo-appbar-section>
 </kendo-appbar>

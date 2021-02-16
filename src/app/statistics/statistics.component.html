@@ -1,52 +1,52 @@
 <kendo-tilelayout [columns]="2" [rowHeight]="20" [resizable]="false">
-  <kendo-label text="Sample count: {{sampleCount}}"></kendo-label>
-  <kendo-label text="Average prediction precision: {{ averagePrecision*100}}%"></kendo-label>
+  <kendo-label text="{{ 'LABELS.SAMPLES' | translate }}: {{sampleCount}}"></kendo-label>
+  <kendo-label text="{{ 'LABELS.AVERAGE_PREDICTION_PRECISION' | translate }}: {{ (averagePrecision*100).toFixed(2)}}%"></kendo-label>
 </kendo-tilelayout>
 
 <kendo-tilelayout [columns]="2" [rowHeight]="255" [resizable]="true" [reorderable]="true">
-  <kendo-tilelayout-item title="Patient age" [col]="1">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.AGE' | translate}}" [col]="1">
       <kendo-tilelayout-item-body>
         <app-line-chart [data]="this.ageChartData"></app-line-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="Patient gender" [col]="2">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.SEX' | translate}}" [col]="2">
       <kendo-tilelayout-item-body>
         <app-pie-chart [data]="this.genderChartData"></app-pie-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="Creatinine level" [col]="1">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.CREATININE_LEVEL' | translate}}" [col]="1">
       <kendo-tilelayout-item-body>
         <app-line-chart [data]="this.creatinineChartData"></app-line-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="LYVE1 protein amount" [col]="2">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.LYVE1_AMOUNT' | translate}}" [col]="2">
       <kendo-tilelayout-item-body>
         <app-line-chart [data]="this.lyve1ChartData"></app-line-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="REG1B protein amount" [col]="1">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.REG1B_AMOUNT' | translate}}" [col]="1">
       <kendo-tilelayout-item-body>
         <app-line-chart [data]="this.reg1bChartData"></app-line-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="TFF1 protein amount" [col]="2">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.TFF1_AMOUNT' | translate}}" [col]="2">
       <kendo-tilelayout-item-body>
         <app-line-chart [data]="this.tff1ChartData"></app-line-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="REG1A protein amount" [col]="1">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.REG1A_AMOUNT' | translate}}" [col]="1">
       <kendo-tilelayout-item-body>
         <app-line-chart [data]="this.reg1aChartData"></app-line-chart>
       </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 
-  <kendo-tilelayout-item title="Diagnosis" [col]="2">
+  <kendo-tilelayout-item title="{{'DATA.SAMPLEDATA.DIAGNOSIS' | translate}}" [col]="2">
       <kendo-tilelayout-item-body>
         <app-pie-chart [data]="this.diagnosisChartData"></app-pie-chart>
       </kendo-tilelayout-item-body>

@@ -1,14 +1,14 @@
 <kendo-grid [kendoGridBinding]="gridData" kendoGridSelectBy="id" [selectedKeys]="mySelection" [pageSize]="20"
-  [pageable]="true" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true" style.height="80vh"
-  [columnMenu]="{ filter: true }" (dataStateChange)="refreshGrid()">
+  [pageable]="true" [sortable]="true" [groupable]="true" [reorderable]="true" [resizable]="true"
+  [columnMenu]="{ filter: true }">
 
   <ng-template kendoGridToolbarTemplate>
-    <button kendoGridExcelCommand icon="file-excel" style="float:right;">Export to Excel</button>
-    <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
-    <button kendoButton icon="file-csv" style="float:right;" (click)="this.ExportData()">Export to CSV</button>
-    <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamplesAndResults()">Import samples & results</button>
-    <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamples()">Import samples</button>
-    <button kendoButton style="float:right;" (click)="this.DeleteSelected()">Remove Selected</button>
+    <button kendoGridExcelCommand icon="file-excel" style="float:right;">{{ 'TABS.HISTORY.BUTTON.TO_EXCEL' | translate}}</button>
+    <button kendoGridPDFCommand icon="file-pdf" style="float:right;">{{ 'TABS.HISTORY.BUTTON.TO_PDF' | translate}}</button>
+    <button kendoButton icon="file-csv" style="float:right;" (click)="this.ExportData()">{{ 'TABS.HISTORY.BUTTON.TO_CSV' | translate}}</button>
+    <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamplesAndResults()">{{ 'TABS.HISTORY.BUTTON.IMPORT_RESULTS' | translate}}</button>
+    <button kendoButton icon="file-csv" style="float:left;" (click)="this.ImportSamples()">{{ 'TABS.HISTORY.BUTTON.IMPORT_SAMPLES' | translate}}</button>
+    <button kendoButton style="float:right;" (click)="this.DeleteSelected()">{{ 'TABS.HISTORY.BUTTON.REMOVE_SELECTED' | translate}}</button>
   </ng-template>
 
   <input #fileInput type="file" style="display:none" (change)="this.fileChangeListener($event.srcElement.files)">
@@ -16,45 +16,45 @@
   <kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}" [class]="{'text-center': true}"
     [columnMenu]="false" showSelectAll="true"></kendo-grid-checkbox-column>
 
-  <kendo-grid-column-group title="Sample" [columnMenu]="false">
+  <kendo-grid-column-group title="{{'LABELS.SAMPLE' | translate}}" [columnMenu]="false">
 
-    <kendo-grid-column field="age" title="Patient's age" [width]="120">
+    <kendo-grid-column field="age" title="{{'DATA.SAMPLEDATA.AGE' | translate}}" [width]="120">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.age }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="sex" title="Gender" [width]="90" [class]="{'text-center': true}">
+    <kendo-grid-column field="sex" title="{{'DATA.SAMPLEDATA.SEX' | translate}}" [width]="90" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.sex.displayName | translate }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="creatinine" title="Creatinine level" [width]="130" [class]="{'text-center': true}">
+    <kendo-grid-column field="creatinine" title="{{'DATA.SAMPLEDATA.CREATININE_LEVEL' | translate}}" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.creatinine.toFixed(2) }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="LYVE1" title="LYVE1 amount" [width]="130" [class]="{'text-center': true}">
+    <kendo-grid-column field="LYVE1" title="{{'DATA.SAMPLEDATA.LYVE1_AMOUNT' | translate}}" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.LYVE1.toFixed(2) }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="REG1B" title="REG1B amount" [width]="130" [class]="{'text-center': true}">
+    <kendo-grid-column field="REG1B" title="{{'DATA.SAMPLEDATA.REG1B_AMOUNT' | translate}}" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.REG1B.toFixed(2) }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="TFF1" title="TFF1 amount" [width]="130" [class]="{'text-center': true}">
+    <kendo-grid-column field="TFF1" title="{{'DATA.SAMPLEDATA.TFF1_AMOUNT' | translate}}" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.TFF1.toFixed(2) }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="REG1A" title="REG1A amount" [width]="130" [class]="{'text-center': true}">
+    <kendo-grid-column field="REG1A" title="{{'DATA.SAMPLEDATA.REG1A_AMOUNT' | translate}}" [width]="130" [class]="{'text-center': true}">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.REG1A.toFixed(2) }}</div>
       </ng-template>
@@ -62,15 +62,15 @@
 
   </kendo-grid-column-group>
 
-  <kendo-grid-column-group title="Analysis result" [columnMenu]="false">
+  <kendo-grid-column-group title="{{'LABELS.ANALYSIS_RESULT' | translate}}" [columnMenu]="false">
 
-    <kendo-grid-column field="diagnosis" title="Diagnosis" [width]="130" filter="numeric">
+    <kendo-grid-column field="diagnosis" title="{{'DATA.SAMPLEDATA.DIAGNOSIS' | translate}}" [width]="130" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.diagnosis.displayName | translate }}</div>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="precision" title="Precision" [width]="130" filter="numeric">
+    <kendo-grid-column field="precision" title="{{'DATA.SAMPLEDATA.PRECISION' | translate}}" [width]="130" filter="numeric">
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ (dataItem.precision*100).toFixed(2) }}%</div>
       </ng-template>

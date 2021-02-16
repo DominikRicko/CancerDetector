@@ -2,43 +2,53 @@
   "TABS": {
     "NEW_SAMPLE": {
       "TITLE": "New sample",
-      "ANALYZE": "Analyze",
-
-      "SAMPLEDATA":{
-        "AGE": "Age",
-        "SEX": "Gender",
-        "CREATININE_LEVEL": "Creatinine level",
-        "REG1A_AMOUNT": "REG1A protein amount",
-        "REG1B_AMOUNT": "REG1B protein amount",
-        "TFF1_AMOUNT": "TFF1 protein amount",
-        "LYVE1_AMOUNT": "LYVE1 protein amount"
-      },
-
-      "ERROR":{
-        "AGE":"Error: Age is required.",
-        "SEX":"Error: Patient's gender is required.",
-        "CREATININE_LEVEL":"Error: Creatinine level is required.",
-        "REG1A_AMOUNT":"Error: REG1A amount is required.",
-        "REG1B_AMOUNT":"Error: REG1B amount is required.",
-        "TFF1_AMOUNT":"Error: TFF1 amount is required.",
-        "LYVE1_AMOUNT":"Error: LYVE1 amount is required."
-      }
+      "ANALYZE": "Analyze"
     },
     "HISTORY": {
-      "TITLE": "History"
+      "TITLE": "History",
+      "BUTTON":{
+        "TO_PDF": "Export to PDF",
+        "TO_EXCEL": "Export to Excel",
+        "TO_CSV": "Export to CSV",
+        "IMPORT_RESULTS": "Import samples & results",
+        "IMPORT_SAMPLES": "Import samples",
+        "REMOVE_SELECTED": "Remove Selected"
+      }
     },
     "STATISTICS": {
       "TITLE": "Statistics"
-    },
-    "RESULT": {
-      "TITLE": "Result"
     }
   },
   "DATA":{
     "MALE":"Male",
     "FEMALE":"Female",
     "PANCREATIC_CANCER":"Pancreatic cancer",
-    "NOT_PANCREATIC_CANCER":"Non-cancerous condition of the pancreas"
+    "NOT_PANCREATIC_CANCER":"Non-cancerous condition of the pancreas",
+    "SAMPLEDATA":{
+      "AGE": "Age",
+      "SEX": "Gender",
+      "CREATININE_LEVEL": "Creatinine level",
+      "REG1A_AMOUNT": "REG1A protein amount",
+      "REG1B_AMOUNT": "REG1B protein amount",
+      "TFF1_AMOUNT": "TFF1 protein amount",
+      "LYVE1_AMOUNT": "LYVE1 protein amount",
+      "DIAGNOSIS": "Diagnosis",
+      "PRECISION": "Precision"
+    }
+  },
+  "LABELS":{
+
+    "PREDICTION_PRECISION": "Prediction precision",
+    "AVERAGE_PREDICTION_PRECISION": "Average prediction precision",
+    "USED_TECHNOLOGIES": "This app is using the following:",
+    "AUTHORS": "App developed by Petra Radočaj and Dominik Ričko.",
+    "SAMPLE": "Sample",
+    "SAMPLES": "Samples",
+    "ANALYSIS_RESULT": "Analysis result",
+    "DRAG_DROP_COLUMN": "Drag a column header and drop it here to group by that column",
+    "NO_DATA": "No records available",
+    "OF": "of",
+    "ITEMS": "items"
   }
 
 }

@@ -1,16 +1,55 @@
 {
   "TABS": {
     "NEW_SAMPLE": {
-      "TITLE": "Novi uzorak"
+      "TITLE": "Novi uzorak",
+      "ANALYZE": "Analiziraj"
     },
     "HISTORY": {
-      "TITLE": "Povijest"
+      "TITLE": "Povijest",
+      "BUTTON":{
+        "TO_PDF": "Izvezi u PDF",
+        "TO_EXCEL": "Izvezi u Excel",
+        "TO_CSV": "Izvezi u CSV",
+        "IMPORT_RESULTS": "Uvezi uzorke i rezultate",
+        "IMPORT_SAMPLES": "Uvezi uzorke",
+        "REMOVE_SELECTED": "Obriši odabrano"
+      }
     },
     "STATISTICS": {
-      "TITLE": "Statistika"
-    },
-    "RESULT": {
-      "TITLE": "Rezultat"
+      "TITLE": "Statistike"
     }
+  },
+  "DATA":{
+    "MALE":"Muško",
+    "FEMALE":"Žensko",
+    "PANCREATIC_CANCER":"Rak gušterače",
+    "NOT_PANCREATIC_CANCER":"Nekancerogeno stanje gušterače",
+    "SAMPLEDATA":{
+      "AGE": "Dob",
+      "SEX": "Spol",
+      "CREATININE_LEVEL": "Nivo kreatinina",
+      "REG1A_AMOUNT": "Količina REG1A proteina",
+      "REG1B_AMOUNT": "Količina REG1B proteina",
+      "TFF1_AMOUNT": "Količina TFF1 proteina",
+      "LYVE1_AMOUNT": "Količina LYVE1 proteina",
+      "DIAGNOSIS": "Diagnoza",
+      "PRECISION": "Preciznost"
+    }
+  },
+  "LABELS":{
+
+    "PREDICTION_PRECISION": "Preciznost predviđanja",
+    "AVERAGE_PREDICTION_PRECISION": "Prosječna preciznost predviđanja",
+    "USED_TECHNOLOGIES": "Ova aplikacija koristi sljedeće:",
+    "AUTHORS": "Aplikaciju izradili Petra Radočaj i Dominik Ričko.",
+    "SAMPLE": "Uzorak",
+    "SAMPLES": "Uzorci",
+    "ANALYSIS_RESULT": "Rezultat analize",
+    "DRAG_DROP_COLUMN": "Dovucite zaglavlje stupca ovdje i pustite ga ovdje da bi ste grupirali prema tom stupcu",
+    "NO_DATA": "Nema dostupnih stavki",
+    "OF": "od",
+    "ITEMS": "stavki"
   }
+
 }
+
