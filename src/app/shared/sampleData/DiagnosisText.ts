@@ -10,6 +10,6 @@ export class DiagnosisText {
 
 }
 
-export const CancerPositive = new DiagnosisText('{{ "PANCREATIC_CANCER" | translate }}',2);
-export const CancerNegative = new DiagnosisText('{{ "NOT_PANCREATIC_CANCER" | translate }}',3);
+export const CancerPositive = new DiagnosisText('DATA.PANCREATIC_CANCER',2);
+export const CancerNegative = new DiagnosisText('DATA.NOT_PANCREATIC_CANCER',3);
 export const DiagnosisArray : DiagnosisText[] = [CancerPositive, CancerNegative];

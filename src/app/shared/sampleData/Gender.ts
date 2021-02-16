@@ -11,6 +11,6 @@ export class Gender {
 
 }
 
-export const Male : Gender = new Gender("{{'DATA.MALE' | translate}}", 'M');
-export const Female : Gender = new Gender("{{'DATA.FEMALE' | translate}}", 'F');
+export const Male : Gender = new Gender('DATA.MALE', 'M');
+export const Female : Gender = new Gender('DATA.FEMALE', 'F');
 export const GenderList : Gender[] = [Male, Female];
