@@ -1,6 +1,6 @@
 import { DiagnosisArray, DiagnosisText } from './DiagnosisText';
 import { Gender, GenderList } from './Gender';
-import { Observable } from 'rxjs';
+import { AsyncSubject, Observable } from 'rxjs';
 
 export class SampleData {
 
@@ -50,6 +50,8 @@ export class SampleDataContainer{
     precision: number
   }) : SampleData {
 
+    console.log(data);
+
     let correctGender : Gender;
 
     for(const gender of GenderList){
@@ -81,10 +83,15 @@ export class SampleDataContainer{
       data.precision
     );
     SampleDataContainer.samples.push(newSample);
+
+    console.log('Inside sample' + newSample.toString());
+
     return newSample;
   }
 
-  static addFromRequest(sampleDataRequest : Observable<SampleData>) : void{
+  static addFromRequest(sampleDataRequest : Observable<SampleData>) : Observable<SampleData>{
+
+    const observable = new AsyncSubject<SampleData>();
     sampleDataRequest.subscribe({
       next: (value) => {
         let jsonObject: any = JSON.parse(JSON.stringify(value));
@@ -93,9 +100,15 @@ export class SampleDataContainer{
         jsonObject.diagnosis = parseInt(jsonObject["Scored Labels"]);
         jsonObject.precision = jsonObject["Scored Probabilities"];
 
-        SampleDataContainer.addSample(jsonObject);
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        console.log('Inside JSONrequest: ' + jsonObject.toString());
 
+        observable.next(SampleDataContainer.addSample(jsonObject));
+        observable.complete();
       }
     });
+
+    return observable;
+
   }
 }

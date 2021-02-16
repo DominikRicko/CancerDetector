@@ -59,15 +59,13 @@ export class NewSampleComponent implements OnInit {
         this.sampleForm.get('reg1a').value
       );
 
-      analysisObserver.subscribe(() => {
-
-        const sampleData = SampleDataContainer.samples[SampleDataContainer.samples.length - 1];
+      const sampleDataObservable = SampleDataContainer.addFromRequest(analysisObserver);
+      sampleDataObservable.subscribe((sampleData) => {
+        console.log(sampleData);
 
         this.diagnosis = sampleData.diagnosis.displayName;
         this.precision = sampleData.precision;
-
       });
-      SampleDataContainer.addFromRequest(analysisObserver);
 
     }
 
