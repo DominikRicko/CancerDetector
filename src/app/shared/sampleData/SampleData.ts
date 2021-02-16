@@ -37,6 +37,7 @@ export class SampleData {
 export class SampleDataContainer{
 
   static readonly samples : SampleData[] = [];
+  static nextId = 0;
 
   static addSample(data: {
     age: number,
@@ -71,7 +72,7 @@ export class SampleDataContainer{
     }
 
     const newSample = new SampleData(
-      SampleDataContainer.samples.length,
+      SampleDataContainer.nextId++,
       data.age,
       correctGender,
       data.creatinine,
