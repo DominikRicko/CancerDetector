@@ -14,7 +14,7 @@ export class NewSampleComponent implements OnInit {
   public sampleForm: FormGroup;
   readonly genderList : Array<Gender>;
 
-  public diagnosis = "Nothing";
+  public diagnosis = "";
   public precision = 0;
 
   readonly minValue = 0;
