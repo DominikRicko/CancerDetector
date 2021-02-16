@@ -20,11 +20,6 @@ export class HistoryComponent implements OnInit{
 
   public constructor(private ngxCsvParser: NgxCsvParser, private analysisRequester : AnalysisRequester){}
 
-  public refreshGrid() : void{
-    this.gridData = SampleDataContainer.samples;
-    console.log("Grid refreshed");
-  }
-
   @ViewChild('fileInput', { static: false }) fileImportInput;
 
   private postParseActions : (result: Array<any>) => void;

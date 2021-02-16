@@ -65,15 +65,6 @@ export class ChartDisplayableArray {
       for (let i = this.min; i <= this.max + offset; i += options.range)
         counter[i] = 0;
 
-      //min = 0.1, range = 1
-      //modMin = 0.5
-      //divMin = 0
-
-      //max = 124
-      //
-
-
-
       for (const sample of samples){
 
         let value = sample[displayProperty] as number;
@@ -99,8 +90,6 @@ export class ChartDisplayableArray {
 
     }
 
-    console.log(counter);
-
     // eslint-disable-next-line @typescript-eslint/no-for-in-array
     for (const key in counter) {
       this.data.push({ value: counter[key], category: key });
@@ -115,9 +104,6 @@ export class ChartDisplayableArray {
       if (this.max < counter[key]) this.max = counter[key];
       if (this.min > counter[key]) this.min = counter[key];
     }
-
-    console.log(this.max);
-    console.log(this.min);
 
     this.valueAxis.max = this.max;
     this.valueAxis.min = this.min;
