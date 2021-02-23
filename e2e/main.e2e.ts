@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
 import { SpectronClient } from 'spectron';
 
 import commonSetup from './common-setup';
@@ -50,7 +50,7 @@ describe('Cancer Detector App', function () {
 
   it('should navigate to history', async function() {
 
-    if(!(await navigateButtonCall('History'))) fail("Did not find the button");
+    if(!(await navigateButtonCall('History'))) assert.fail("Did not find the button");
 
     const url = await client.getUrl();
     const urlParts = url.split('/');
@@ -65,7 +65,7 @@ describe('Cancer Detector App', function () {
 
   it('should navigate to statistics', async function() {
 
-    if(!(await navigateButtonCall('Statistics'))) fail("Did not find the button");
+    if(!(await navigateButtonCall('Statistics'))) assert.fail("Did not find the button");
 
     const url = await client.getUrl();
     const urlParts = url.split('/');
