@@ -1,17 +1,20 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultComponent } from './result.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppModule } from '../app.module';
 
 describe('ResultComponent', () => {
   let component: ResultComponent;
   let fixture: ComponentFixture<ResultComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultComponent ]
+      declarations: [ ResultComponent ],
+      imports: [TranslateModule.forRoot(), RouterTestingModule, AppModule]
     }).compileComponents();
   }));
 

@@ -1,19 +1,19 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppbarComponent } from './appbar.component';
+
+import { AppModule } from '../app.module';
 
 describe('AppbarComponent', () => {
   let component: AppbarComponent;
   let fixture: ComponentFixture<AppbarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppbarComponent ]
-    })
-    .compileComponents();
+      declarations: [ AppbarComponent ],
+      imports: [AppModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -3,7 +3,7 @@ import { SpectronClient } from 'spectron';
 
 import commonSetup from './common-setup';
 
-describe('angular-electron App', function () {
+describe('Cancer Detector App', function () {
 
   commonSetup.apply(this);
 
@@ -18,10 +18,16 @@ describe('angular-electron App', function () {
     expect(count).to.equal(1);
   });
 
-  it('should display message saying App works !', async function () {
-    const elem = await client.$('app-home h1');
-    const text = await elem.getText();
-    expect(text).to.equal('App works !');
+  it('should navigate to new_sample', async function () {
+    const url = await client.getUrl();
+    const urlParts = url.split('/');
+
+    let result = false;
+    for(const urlPart of urlParts){
+      if(urlPart == 'new_sample') result = true;
+    }
+
+    expect(result).to.equal(true);
   });
 
 });

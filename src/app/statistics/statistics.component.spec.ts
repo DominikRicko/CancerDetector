@@ -5,14 +5,18 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { LineChartComponent } from '../charts/line-chart/line-chart.component';
+import { PieChartComponent } from '../charts/pie-chart/pie-chart.component';
+import { AppModule } from '../app.module';
+
 describe('StatisticsComponent', () => {
   let component: StatisticsComponent;
   let fixture: ComponentFixture<StatisticsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [StatisticsComponent],
-      imports: [TranslateModule.forRoot(), RouterTestingModule]
+      declarations: [StatisticsComponent, LineChartComponent, PieChartComponent ],
+      imports: [TranslateModule.forRoot(), RouterTestingModule, AppModule]
     }).compileComponents();
   }));
 
@@ -26,10 +30,4 @@ describe('StatisticsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render title in a h1 tag', waitForAsync(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'PAGES.DETAIL.TITLE'
-    );
-  }));
 });
