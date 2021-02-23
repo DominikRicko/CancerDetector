@@ -31,4 +31,10 @@ describe('NewSampleComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have empty form fields', () => {
+
+    expect(component.areFormFieldsNotEmpty()).toBeFalsy();
+
+  });
+
 });
