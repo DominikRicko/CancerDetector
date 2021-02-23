@@ -24,7 +24,7 @@ export class AnalysisRequester {
     LYVE1: number,
     REG1B: number,
     TFF1: number,
-    REG1A: number): Observable<SampleData> {
+    REG1A: number): Observable<any> {
 
     const request = {
       "Inputs": {
@@ -52,7 +52,7 @@ export class AnalysisRequester {
       }
     });
 
-    return observer as Observable<SampleData>;
+    return observer;
   }
 
 }

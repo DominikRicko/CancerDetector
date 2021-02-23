@@ -86,7 +86,7 @@ export class SampleDataContainer{
     return newSample;
   }
 
-  static addFromRequest(sampleDataRequest : Observable<SampleData>) : Observable<SampleData>{
+  static addFromRequest(sampleDataRequest : Observable<any>) : Observable<SampleData>{
 
     const observable = new AsyncSubject<SampleData>();
     sampleDataRequest.subscribe({
