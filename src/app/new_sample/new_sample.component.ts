@@ -49,15 +49,15 @@ export class NewSampleComponent implements OnInit {
 
     if( this.areFormFieldsNotEmpty() ){
 
-      const analysisObserver = this.analysisRequester.PostRequest(
-        this.sampleForm.get('age').value,
-        (this.sampleForm.get('sex').value as Gender).exportName,
-        this.sampleForm.get('creatinine').value,
-        this.sampleForm.get('lyve1').value,
-        this.sampleForm.get('reg1b').value,
-        this.sampleForm.get('tff1').value,
-        this.sampleForm.get('reg1a').value
-      );
+      const analysisObserver = this.analysisRequester.PostRequest([{
+        'age' : this.sampleForm.get('age').value,
+        'sex' : (this.sampleForm.get('sex').value as Gender).exportName,
+        'creatinine' : this.sampleForm.get('creatinine').value,
+        'LYVE1' : this.sampleForm.get('lyve1').value,
+        'REG1B' : this.sampleForm.get('reg1b').value,
+        'TFF1' : this.sampleForm.get('tff1').value,
+        'REG1A' : this.sampleForm.get('reg1a').value
+      }]);
 
       const sampleDataObservable = SampleDataContainer.addFromRequest(analysisObserver);
       sampleDataObservable.subscribe((sampleData) => {

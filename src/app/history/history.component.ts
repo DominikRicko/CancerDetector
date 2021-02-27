@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit,  ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit,  ViewChild, ElementRef } from '@angular/core';
 
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 
@@ -13,7 +13,7 @@ import { ExportToCsv } from 'export-to-csv';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
-export class HistoryComponent implements OnInit, AfterViewInit{
+export class HistoryComponent implements OnInit{
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   public mySelection: string[] = [];
   public gridData = SampleDataContainer.samples;
@@ -46,12 +46,6 @@ export class HistoryComponent implements OnInit, AfterViewInit{
   public ngOnInit(): void {
   }
 
-  public ngAfterViewInit() : void {
-    this.dataBinding.data = SampleDataContainer.samples;
-
-    console.log(this.dataBinding);
-  }
-
   public ImportFile(inputType : string) : void{
 
     this.fileImportInput.nativeElement.setAttribute('accept',inputType);
@@ -62,19 +56,11 @@ export class HistoryComponent implements OnInit, AfterViewInit{
 
     this.postParseActions = (result: Array<any>) => {
 
-      for(const resultItem of result){
-        SampleDataContainer.addFromRequest(this.analysisRequester.PostRequest(
-          resultItem.age,
-          resultItem.sex,
-          resultItem.creatinine,
-          resultItem.LYVE1,
-          resultItem.REG1B,
-          resultItem.TFF1,
-          resultItem.REG1A));
+      const observer = SampleDataContainer.addFromRequest(this.analysisRequester.PostRequest(result));
 
-      }
-
-      this.dataBinding.rebind();
+      observer.subscribe(()=>{
+        this.dataBinding.rebind();
+      });
 
     };
 

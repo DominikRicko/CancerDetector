@@ -51,23 +51,44 @@ export class SampleDataContainer{
     precision: number
   }) : SampleData {
 
+    if(isNaN(data.age) ||
+    isNaN(data.creatinine) ||
+    isNaN(data.LYVE1) ||
+    isNaN(data.REG1B) ||
+    isNaN(data.TFF1) ||
+    isNaN(data.REG1A) ||
+    isNaN(data.diagnosis) ||
+    isNaN(data.precision)){
+      throw("Invalid data.");
+    }
+
     let correctGender : Gender;
+    let correctData = false;
 
     for(const gender of GenderList){
 
-      if(gender.exportName == data.sex)
+      if(gender.exportName == data.sex){
         correctGender = gender;
+        correctData = true;
+      }
 
     }
 
     let correctDiagnosis : DiagnosisText;
 
+    if(!correctData) throw("invalid data");
+
+    correctData = false;
     for(const diagnosis of DiagnosisArray){
 
-      if(diagnosis.exportId == data.diagnosis)
+      if(diagnosis.exportId == data.diagnosis){
         correctDiagnosis = diagnosis;
+        correctData = true;
+      }
 
     }
+
+    if(!correctData) throw("invalid data");
 
     const newSample = new SampleData(
       SampleDataContainer.nextId++,
@@ -91,19 +112,23 @@ export class SampleDataContainer{
     const observable = new AsyncSubject<SampleData>();
     sampleDataRequest.subscribe({
       next: (value) => {
-        let jsonObject: any = JSON.parse(JSON.stringify(value));
-        jsonObject = jsonObject.Results.output1[0];
+        const jsonObject: any = JSON.parse(JSON.stringify(value));
 
-        jsonObject.age = parseInt(jsonObject.age);
-        jsonObject.creatinine = parseFloat(jsonObject.creatinine);
-        jsonObject.LYVE1 = parseFloat(jsonObject.LYVE1);
-        jsonObject.TFF1 = parseFloat(jsonObject.TFF1);
-        jsonObject.REG1B = parseFloat(jsonObject.REG1B);
-        jsonObject.REG1A = parseFloat(jsonObject.REG1A);
-        jsonObject.diagnosis = parseInt(jsonObject["Scored Labels"]);
-        jsonObject.precision = parseFloat(jsonObject["Scored Probabilities"]);
+        for(const sampleResult of jsonObject.Results.output1){
 
-        observable.next(SampleDataContainer.addSample(jsonObject));
+          sampleResult.age = parseInt(sampleResult.age);
+          sampleResult.creatinine = parseFloat(sampleResult.creatinine);
+          sampleResult.LYVE1 = parseFloat(sampleResult.LYVE1);
+          sampleResult.TFF1 = parseFloat(sampleResult.TFF1);
+          sampleResult.REG1B = parseFloat(sampleResult.REG1B);
+          sampleResult.REG1A = parseFloat(sampleResult.REG1A);
+          sampleResult.diagnosis = parseInt(sampleResult["Scored Labels"]);
+          sampleResult.precision = parseFloat(sampleResult["Scored Probabilities"]);
+
+          observable.next(SampleDataContainer.addSample(sampleResult));
+
+        }
+
         observable.complete();
       }
     });
