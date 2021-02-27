@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit,  ViewChild, ElementRef } from '@angular/core';
 
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 
@@ -13,18 +13,20 @@ import { ExportToCsv } from 'export-to-csv';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
-export class HistoryComponent implements OnInit{
+export class HistoryComponent implements OnInit, AfterViewInit{
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
-  public gridData = SampleDataContainer.samples;
   public mySelection: string[] = [];
+  public gridData = SampleDataContainer.samples;
 
-  public constructor(private ngxCsvParser: NgxCsvParser, private analysisRequester : AnalysisRequester){}
+  public constructor(
+    private ngxCsvParser: NgxCsvParser,
+    private analysisRequester: AnalysisRequester) {}
 
-  @ViewChild('fileInput', { static: false }) fileImportInput;
+  @ViewChild('fileInput', { static: false }) fileImportInput : ElementRef;
 
   private postParseActions : (result: Array<any>) => void;
 
-  fileChangeListener(files: File[]): void {
+  public fileChangeListener(files: File[]): void {
 
     for(const file of files){
       if (file.type != 'application/vnd.ms-excel') continue; //not CSV
@@ -37,9 +39,17 @@ export class HistoryComponent implements OnInit{
       observer.subscribe(this.postParseActions);
     }
 
+    this.fileImportInput.nativeElement.value = "";
+
   }
 
   public ngOnInit(): void {
+  }
+
+  public ngAfterViewInit() : void {
+    this.dataBinding.data = SampleDataContainer.samples;
+
+    console.log(this.dataBinding);
   }
 
   public ImportFile(inputType : string) : void{
@@ -63,6 +73,9 @@ export class HistoryComponent implements OnInit{
           resultItem.REG1A));
 
       }
+
+      this.dataBinding.rebind();
+
     };
 
     this.ImportFile('.csv');
@@ -87,7 +100,7 @@ export class HistoryComponent implements OnInit{
 
       }
 
-      this.gridData = SampleDataContainer.samples;
+      this.dataBinding.rebind();
 
     };
 
@@ -118,8 +131,6 @@ export class HistoryComponent implements OnInit{
 
   public DeleteSelected() : void{
 
-    this.gridData.splice(1,1);
-
     for(const selectedIdStringed of this.mySelection){
       const selectedId = parseInt(selectedIdStringed);
 
@@ -131,6 +142,11 @@ export class HistoryComponent implements OnInit{
         }
       }
     }
+
+    this.mySelection.splice(0);
+
+    this.dataBinding.rebind();
+
   }
 
 }
