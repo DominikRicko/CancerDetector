@@ -1,6 +1,6 @@
 {
   "name": "cancer-detector",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Frontend application for Azure ML Web Service which does predictions about pancratic cancer based on the sample data.",
   "keywords": [
     "cancer",
